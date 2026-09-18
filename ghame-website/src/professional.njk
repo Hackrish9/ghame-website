@@ -1,0 +1,169 @@
+---
+layout: layouts/base.njk
+title: Ghame Professional
+permalink: /professional/
+eleventyComputed:
+  seo_title: "{{ professional.seo_title }}"
+  seo_description: "{{ professional.seo_description }}"
+---
+{% import "partials/icons.njk" as ic %}
+{%- set pro = professional %}
+{%- set greet = "Hello " ~ site.brand ~ ", " %}
+{%- set range = collections.shopProducts | horeca %}
+{%- set packs = range | packColumns %}
+
+<section class="hero hero-pro" aria-labelledby="pro-h">
+  {%- if pro.hero.image %}
+  <img class="hero-media" src="{{ pro.hero.image }}" alt="{{ pro.hero.image_alt }}" fetchpriority="high">
+  {%- else %}
+  <img class="hero-vine" src="/assets/img/illustrations/vine.svg" alt="" width="840" height="780">
+  {%- endif %}
+  <div class="wrap hero-inner">
+    <p class="hero-kicker">Ghame Professional</p>
+    <h1 id="pro-h">{{ pro.hero.heading }}</h1>
+    <p class="hero-intro">{{ pro.hero.text }}</p>
+    <div class="btn-row">
+      <a class="btn btn-hero-primary" href="#quote">Request a quotation</a>
+      <a class="btn btn-hero-secondary" href="{{ site.contact.whatsapp | waLink(greet ~ 'I would like a sample for my business.') }}" target="_blank" rel="noopener">Request a sample</a>
+      <a class="btn btn-hero-text" href="{{ site.contact.whatsapp | waLink(greet ~ 'I would like to talk to B2B sales.') }}" target="_blank" rel="noopener">Talk to B2B sales</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="seg-h">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="seg-h">{{ pro.segments.heading }}</h2>
+      <p>{{ pro.segments.intro }}</p>
+    </div>
+    <ul class="segment-grid">
+      {%- for s in pro.segments.items %}<li><h3>{{ s.name }}</h3><p>{{ s.text }}</p></li>{% endfor %}
+    </ul>
+  </div>
+</section>
+
+{%- if range.length %}
+<section class="section range" aria-labelledby="range-h">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="range-h">{{ pro.range.heading }}</h2>
+      <p>{{ pro.range.intro }}</p>
+    </div>
+    <div class="table-scroll">
+      <table class="range-table">
+        <thead><tr><th scope="col">Product</th><th scope="col">Sinhala name</th>{% for pk in packs %}<th scope="col">{{ pk }}</th>{% endfor %}<th scope="col">Larger formats</th></tr></thead>
+        <tbody>
+          {%- for p in range %}
+          <tr>
+            <th scope="row"><a href="{{ p.url }}">{{ p.data.title }}</a></th>
+            <td class="si" lang="si">{{ p.data.title_si }}</td>
+            {%- for pk in packs %}{% set v = p.data.variants | forHoreca | variantFor(pk) %}
+            <td>{% if v %}{% if (v | stockStatus(site)) == "out" %}Out of stock{% else %}Available{% endif %}{% else %}<span class="muted">On request</span>{% endif %}</td>
+            {%- endfor %}
+            <td><a href="{{ site.contact.whatsapp | waLink(greet ~ 'please quote bulk packs of ' ~ p.data.title ~ '.') }}" target="_blank" rel="noopener">Ask for a quote</a></td>
+          </tr>
+          {%- endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+{%- endif %}
+
+<section class="section" aria-labelledby="cap-h">
+  <div class="wrap cap-grid">
+    <div>
+      <h2 id="cap-h">{{ pro.capabilities.heading }}</h2>
+      <p class="lead">{{ pro.capabilities.intro }}</p>
+    </div>
+    <ul class="tick-list tick-list-2">
+      {%- for c in pro.capabilities.items %}{% if c.confirmed %}
+      <li>{{ ic.icon("check", 22) }}<span><strong>{{ c.title }}.</strong> {{ c.text }}</span></li>
+      {%- endif %}{% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section steps-band" aria-labelledby="how-h">
+  <div class="wrap">
+    <h2 id="how-h">{{ pro.steps.heading }}</h2>
+    <ol class="steps steps-4">
+      {%- for st in pro.steps.items %}<li><span class="step-n">{{ loop.index }}</span><h3>{{ st.title }}</h3><p>{{ st.text }}</p></li>{% endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="section" id="quote" aria-labelledby="quote-h">
+  <div class="wrap quote-grid">
+    <form class="form card-form" data-enquiry="quote" novalidate>
+      <h2 id="quote-h">{{ pro.quote.heading }}</h2>
+      <p>{{ pro.quote.intro }}</p>
+      {%- if pro.quote.response_note %}<p class="fine">{{ pro.quote.response_note }}</p>{% endif %}
+      <div class="form-grid">
+        <div class="field"><label for="q-business">Business name</label><input id="q-business" name="Business" required autocomplete="organization"></div>
+        <div class="field"><label for="q-type">Type of business</label>
+          <select id="q-type" name="Type of business">{% for t in pro.quote.business_types %}<option>{{ t }}</option>{% endfor %}</select></div>
+        <div class="field"><label for="q-name">Your name</label><input id="q-name" name="Name" required autocomplete="name"></div>
+        <div class="field"><label for="q-phone">Phone or WhatsApp</label><input id="q-phone" name="Phone" type="tel" required autocomplete="tel"></div>
+        <div class="field"><label for="q-email">Email</label><input id="q-email" name="Email" type="email" autocomplete="email"></div>
+        <div class="field"><label for="q-city">Delivery city</label><input id="q-city" name="Delivery city" autocomplete="address-level2"></div>
+        <div class="field"><label for="q-volume">Monthly volume, all spices</label>
+          <select id="q-volume" name="Monthly volume">{% for v in pro.quote.volumes %}<option>{{ v }}</option>{% endfor %}</select></div>
+        <div class="field field-wide"><label for="q-products">Products you need</label><textarea id="q-products" name="Products" rows="2" placeholder="For example: roasted curry powder, chilli powder"></textarea></div>
+        <div class="field field-wide"><label for="q-notes">Anything else we should know</label><textarea id="q-notes" name="Notes" rows="2"></textarea></div>
+        <label class="check field-wide"><input type="checkbox" name="Sample" value="Please send a sample first"> Send me a sample first</label>
+      </div>
+      <p class="form-error" data-form-error hidden></p>
+      <div class="btn-row">
+        <button class="btn btn-wa" type="submit" data-via="whatsapp">{{ ic.icon("whatsapp", 20) }} Send on WhatsApp</button>
+        <button class="btn btn-outline" type="submit" data-via="email">{{ ic.icon("mail", 20) }} Send by email</button>
+      </div>
+    </form>
+    <aside class="contact-aside" aria-label="Talk to B2B sales">
+      <h2>Prefer to talk?</h2>
+      {%- if site.contact.hours_text %}<p>{{ site.contact.hours_text }}.</p>{% endif %}
+      <ul class="contact-lines">
+        {%- for ph in site.contact.phones %}{% if ph.number %}<li><a href="{{ ph.number | telLink }}">{{ ic.icon("phone", 18) }} {{ ph.number }}</a></li>{% endif %}{% endfor %}
+        {%- if site.contact.b2b_email or site.contact.email %}<li><a href="mailto:{{ site.contact.b2b_email or site.contact.email }}">{{ ic.icon("mail", 18) }} {{ site.contact.b2b_email or site.contact.email }}</a></li>{% endif %}
+      </ul>
+      <a class="btn btn-wa btn-block" href="{{ site.contact.whatsapp | waLink(greet ~ 'I would like to talk to B2B sales.') }}" target="_blank" rel="noopener">{{ ic.icon("whatsapp", 20) }} Message B2B sales on WhatsApp</a>
+    </aside>
+  </div>
+</section>
+
+{%- if pro.export.show %}
+<section class="section export" id="export" aria-labelledby="export-h">
+  <div class="wrap quote-grid">
+    <div>
+      <p class="band-label">Export</p>
+      <h2 id="export-h">{{ pro.export.heading }}</h2>
+      <p class="lead">{{ pro.export.text }}</p>
+      {%- if pro.export.markets.length %}
+      <p><strong>Markets we ship to:</strong> {% for m in pro.export.markets %}{{ m.name or m }}{% if not loop.last %}, {% endif %}{% endfor %}</p>
+      {%- endif %}
+      {%- if pro.export.formats and pro.export.formats.length %}
+      <ul class="format-list">
+        {%- for f in pro.export.formats %}<li><strong>{{ f.title }}</strong><span>{{ f.text }}</span></li>{% endfor %}
+      </ul>
+      {%- endif %}
+      {%- if pro.export.private_label %}<p>{{ pro.export.private_label }}</p>{% endif %}
+      {%- if pro.export.catalogue %}<a class="btn btn-outline" href="{{ pro.export.catalogue }}" download>{{ ic.icon("download", 20) }} Download the export catalogue</a>{% endif %}
+    </div>
+    <form class="form card-form" data-enquiry="export" novalidate>
+      <h3>Send an export enquiry</h3>
+      <div class="form-grid">
+        <div class="field"><label for="e-company">Company</label><input id="e-company" name="Company" required autocomplete="organization"></div>
+        <div class="field"><label for="e-country">Country</label><input id="e-country" name="Country" required autocomplete="country-name"></div>
+        <div class="field"><label for="e-name">Your name</label><input id="e-name" name="Name" required autocomplete="name"></div>
+        <div class="field"><label for="e-email">Email</label><input id="e-email" name="Email" type="email" required autocomplete="email"></div>
+        <div class="field field-wide"><label for="e-products">Products and volumes</label><textarea id="e-products" name="Products and volumes" rows="3"></textarea></div>
+      </div>
+      <p class="form-error" data-form-error hidden></p>
+      <div class="btn-row">
+        <button class="btn btn-dark" type="submit" data-via="email">{{ ic.icon("mail", 20) }} Send by email</button>
+        <button class="btn btn-outline" type="submit" data-via="whatsapp">{{ ic.icon("whatsapp", 20) }} Send on WhatsApp</button>
+      </div>
+    </form>
+  </div>
+</section>
+{%- endif %}

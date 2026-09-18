@@ -1,0 +1,65 @@
+---
+permalink: /admin/index.html
+eleventyExcludeFromCollections: true
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>{{ site.brand }} management portal</title>
+<link rel="icon" type="image/png" href="/assets/img/favicon-32.png">
+<script>window.CMS_MANUAL_INIT = true;</script>
+<!-- Decap CMS. To upgrade, change the version number and test on a preview deployment first. -->
+<script src="https://unpkg.com/decap-cms@3.16.2/dist/decap-cms.js"></script>
+<style>
+  .ghame-setup{font:16px/1.6 system-ui,sans-serif;max-width:640px;margin:10vh auto;padding:0 24px;color:#242321}
+  .ghame-setup code{background:#F7F3EA;padding:2px 6px;border-radius:4px}
+  .ghame-reports{position:fixed;right:16px;bottom:16px;z-index:300;display:flex;gap:8px;font:600 13px system-ui,sans-serif}
+  .ghame-reports a{background:#183C2C;color:#F7F3EA;padding:10px 14px;border-radius:999px;text-decoration:none;box-shadow:0 2px 6px rgba(24,60,44,.3)}
+</style>
+</head>
+<body>
+<nav class="ghame-reports" aria-label="Management reports">
+  <a href="/admin/stock/" target="_blank" rel="noopener">Stock report</a>
+  <a href="/admin/register/" target="_blank" rel="noopener">Verification register</a>
+</nav>
+<script>
+  (function () {
+    var repo = {{ meta.cmsRepo | jsonScript | safe }};
+    var branch = {{ meta.cmsBranch | jsonScript | safe }};
+    var local = /^(localhost|127\.0\.0\.1)$/.test(window.location.hostname);
+    if (!repo && !local) {
+      document.body.innerHTML =
+        '<div class="ghame-setup"><h1>Portal not connected yet</h1>' +
+        '<p>Add the <code>CMS_REPO</code> environment variable in Cloudflare Pages ' +
+        '(for example <code>your-github-name/ghame-website</code>), plus <code>GITHUB_CLIENT_ID</code> and ' +
+        '<code>GITHUB_CLIENT_SECRET</code>, then redeploy. See README.md, step 4.</p></div>';
+      return;
+    }
+    // Sign-in runs through this site's own /api/auth function (Cloudflare Pages
+    // Functions), on whichever address the portal is opened.
+    var base = window.location.origin;
+    CMS.init({
+      config: {
+        backend: {
+          name: "github",
+          repo: repo || "local/ghame-website",
+          branch: branch || "main",
+          base_url: base,
+          auth_endpoint: "api/auth",
+          commit_messages: {
+            create: "Create {{ '{{' }}collection{{ '}}' }} “{{ '{{' }}slug{{ '}}' }}”",
+            update: "Update {{ '{{' }}collection{{ '}}' }} “{{ '{{' }}slug{{ '}}' }}”",
+            delete: "Delete {{ '{{' }}collection{{ '}}' }} “{{ '{{' }}slug{{ '}}' }}”",
+            uploadMedia: "Upload “{{ '{{' }}path{{ '}}' }}”",
+            deleteMedia: "Delete “{{ '{{' }}path{{ '}}' }}”"
+          }
+        }
+      }
+    });
+  })();
+</script>
+</body>
+</html>

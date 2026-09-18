@@ -1,0 +1,632 @@
+# Ghame Spice management portal (Decap CMS)
+# The GitHub connection (repository, branch, login) is set in admin/index.html
+# from Cloudflare environment variables, so this file never needs editing to deploy.
+#
+# Every change is saved as a Git commit. Cloudflare rebuilds the site in 1 to 2 minutes.
+
+# Drafts > In review > Ready > Publish. Each change gets a preview link before it goes live.
+# Delete this line to publish immediately on Save instead.
+publish_mode: editorial_workflow
+
+# Lets a developer edit on their own computer with `npm run cms:local`
+local_backend: true
+
+media_folder: "src/assets/uploads"
+public_folder: "/assets/uploads"
+logo_url: /assets/img/ghame-logo-sm.png
+site_url: /
+display_url: /
+
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+
+collections:
+
+  # ------------------------------------------------------------------ PRODUCTS
+  - name: products
+    label: "Shop: Products"
+    label_singular: "Product"
+    description: "Add, edit or remove products, prices, pack sizes and stock. Untick 'Published' to hide a product without deleting it."
+    folder: "src/products"
+    extension: md
+    format: frontmatter
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    identifier_field: title
+    summary: "{{title}}  |  {{category}}  |  {{published}}"
+    sortable_fields: ["title", "category", "order"]
+    view_filters:
+      - { label: "Published", field: published, pattern: true }
+      - { label: "Hidden", field: published, pattern: false }
+      - { label: "Featured on homepage", field: featured, pattern: true }
+      - { label: "HORECA", field: horeca, pattern: true }
+    view_groups:
+      - { label: "Category", field: category }
+    editor: { preview: false }
+    fields:
+      - { label: "Product name", name: title, widget: string, hint: "As printed on the pack." }
+      - { label: "Sinhala name", name: title_si, widget: string, required: false }
+      - { label: "Published on the website", name: published, widget: boolean, default: true }
+      - { label: "Featured on the homepage", name: featured, widget: boolean, default: false }
+      - { label: "Available to HORECA and wholesale buyers", name: horeca, widget: boolean, default: true }
+      - label: "Category"
+        name: category
+        widget: relation
+        collection: settings
+        file: categories
+        search_fields: ["items.*.name"]
+        value_field: "items.*.id"
+        display_fields: ["items.*.name"]
+      - { label: "Sort order", name: order, widget: number, value_type: int, default: 100, hint: "Lower numbers show first." }
+      - { label: "Botanical name", name: latin, widget: string, required: false, hint: "For example Piper nigrum. Leave empty for blends." }
+      - { label: "Tagline", name: tagline, widget: string, required: false }
+      - { label: "Short description", name: summary, widget: text, hint: "One or two sentences. Shown on product cards and in search results." }
+      - label: "Images"
+        name: images
+        widget: list
+        summary: "{{fields.alt}}"
+        hint: "The first image is the main one. Drag to reorder. Use JPG or WebP under 400 KB, at least 1200 px wide."
+        fields:
+          - { label: "Image", name: src, widget: image, choose_url: false }
+          - { label: "Describe the image (for screen readers and Google)", name: alt, widget: string }
+      - label: "Pack sizes, prices and stock"
+        name: variants
+        widget: list
+        min: 1
+        collapsed: false
+        summary: "{{fields.pack}}  |  {{fields.channel}}  |  LKR {{fields.price}}  |  stock {{fields.stock}}"
+        hint: "One row per pack size. Stock is reduced by staff when an order is confirmed."
+        fields:
+          - { label: "Pack size", name: pack, widget: string, hint: "For example 100 g, 250 g, 1 kg, 5 kg" }
+          - { label: "SKU / item code", name: sku, widget: string, hint: "Must be unique across all products." }
+          - { label: "Sold to", name: channel, widget: select, options: ["All channels", "Retail and B2B", "HORECA only"], default: "All channels", hint: "HORECA only packs are marked HORECA in the shop and listed on the Ghame Professional page." }
+          - { label: "Price (LKR)", name: price, widget: number, value_type: float, min: 0, default: 0, hint: "0 shows 'Price on request'." }
+          - { label: "Previous price (LKR, optional)", name: compare_at, widget: number, value_type: float, min: 0, default: 0, required: false, hint: "Shows as 'Was LKR ...' when higher than the price." }
+          - { label: "Stock (packs in hand)", name: stock, widget: number, value_type: int, min: 0, default: 0 }
+      - label: "Specifications"
+        name: specs
+        widget: object
+        collapsed: true
+        hint: "Empty fields are hidden on the website. Ingredients and storage must match the printed label."
+        fields:
+          - { label: "Natural origin", name: origin, widget: text, required: false }
+          - { label: "Appearance", name: appearance, widget: string, required: false }
+          - { label: "Aroma and taste", name: aroma, widget: string, required: false }
+          - { label: "Suggested uses", name: uses, widget: string, required: false }
+          - { label: "Ingredients", name: ingredients, widget: string, required: false }
+          - { label: "Storage", name: storage, widget: string, required: false }
+          - { label: "Shelf life", name: shelf_life, widget: string, required: false }
+      - label: "Often bought with"
+        name: related
+        widget: relation
+        collection: products
+        search_fields: ["title"]
+        value_field: "{{slug}}"
+        display_fields: ["title"]
+        multiple: true
+        required: false
+      - { label: "Full description", name: body, widget: markdown, required: false, buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"], editor_components: [] }
+      - { label: "Search title (optional)", name: seo_title, widget: string, required: false }
+      - { label: "Search description (optional)", name: seo_description, widget: text, required: false }
+
+  # ------------------------------------------------------------------ RECIPES
+  - name: recipes
+    label: "Recipes"
+    label_singular: "Recipe"
+    folder: "src/recipes"
+    extension: md
+    format: frontmatter
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    summary: "{{title}}"
+    sortable_fields: ["title", "order"]
+    editor: { preview: false }
+    fields:
+      - { label: "Recipe name", name: title, widget: string }
+      - { label: "Published", name: published, widget: boolean, default: true }
+      - { label: "Sort order", name: order, widget: number, value_type: int, default: 100 }
+      - { label: "Short description", name: summary, widget: text }
+      - { label: "Photo", name: image, widget: image, required: false, choose_url: false }
+      - { label: "Describe the photo", name: image_alt, widget: string, required: false }
+      - { label: "Time", name: time, widget: string, required: false, hint: "For example 45 minutes" }
+      - { label: "Serves", name: serves, widget: string, required: false }
+      - label: "Ghame spices used"
+        name: spices
+        widget: relation
+        collection: products
+        search_fields: ["title"]
+        value_field: "{{slug}}"
+        display_fields: ["title"]
+        multiple: true
+        required: false
+      - { label: "Ingredients", name: ingredients, widget: list, field: { label: "Ingredient", name: item, widget: string } }
+      - { label: "Method", name: body, widget: markdown, buttons: ["bold", "italic", "link", "numbered-list", "bulleted-list"], editor_components: [] }
+
+  # ------------------------------------------------------------------ PAGES
+  - name: pages
+    label: "Website pages"
+    description: "Text, images and sections on the main pages. Untick 'Show' to hide a section."
+    editor: { preview: false }
+    files:
+      - name: home
+        label: "Homepage"
+        file: "src/_data/home.json"
+        fields:
+          - label: "Hero (top of the page)"
+            name: hero
+            widget: object
+            fields:
+              - { label: "Small line above the headline", name: kicker, widget: string, required: false }
+              - { label: "Headline, line 1", name: headline, widget: string }
+              - { label: "Headline, line 2", name: headline_2, widget: string, required: false }
+              - { label: "Introduction", name: intro, widget: text }
+              - { label: "Background photo", name: image, widget: image, required: false, choose_url: false, hint: "Landscape, at least 2000 px wide. Also used as the poster for the video." }
+              - { label: "Describe the photo", name: image_alt, widget: string, required: false }
+              - { label: "Background video (MP4, silent loop, under 8 MB)", name: video, widget: file, required: false, choose_url: false }
+              - label: "Buttons"
+                name: buttons
+                widget: list
+                summary: "{{fields.label}}"
+                fields:
+                  - { label: "Label", name: label, widget: string }
+                  - { label: "Link", name: url, widget: string, hint: "For example /shop/ or /professional/" }
+                  - { label: "Style", name: style, widget: select, options: ["primary", "secondary", "text"], default: "primary" }
+          - label: "Trust bar"
+            name: trust
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Show", name: show, widget: boolean, default: true }
+              - label: "Items"
+                name: items
+                widget: list
+                summary: "{{fields.label}}"
+                fields:
+                  - { label: "Label", name: label, widget: string }
+                  - { label: "Icon", name: icon, widget: select, options: ["leaf", "check", "chef", "box", "globe", "trace", "truck", "shield"], default: "check" }
+          - label: "The Essence of Sri Lanka (spice plates)"
+            name: essence
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Show", name: show, widget: boolean, default: true }
+              - { label: "Heading", name: heading, widget: string }
+              - { label: "Introduction", name: intro, widget: text }
+              - label: "Spices"
+                name: spices
+                widget: list
+                summary: "{{fields.name}}"
+                fields:
+                  - { label: "Name", name: name, widget: string }
+                  - { label: "Sinhala name", name: name_si, widget: string, required: false }
+                  - { label: "Botanical name", name: latin, widget: string, required: false }
+                  - { label: "Tagline", name: tagline, widget: string, required: false }
+                  - { label: "Part used", name: part_used, widget: string, required: false }
+                  - { label: "Image", name: image, widget: image, required: false, choose_url: false }
+                  - { label: "Describe the image", name: image_alt, widget: string, required: false }
+                  - label: "Linked product"
+                    name: product
+                    widget: relation
+                    collection: products
+                    search_fields: ["title"]
+                    value_field: "{{slug}}"
+                    display_fields: ["title"]
+                    required: false
+                    hint: "With a product linked, the card says 'Shop ...'. Without one it says 'Ask about availability' and opens WhatsApp."
+                  - { label: "Show 'In the Ghame range' badge", name: in_range, widget: boolean, default: false }
+          - label: "Nutmeg and mace story"
+            name: nutmeg_mace
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Show", name: show, widget: boolean, default: true }
+              - { label: "Botanical name", name: latin, widget: string, required: false }
+              - { label: "Heading", name: heading, widget: string }
+              - { label: "Text", name: body, widget: text }
+              - { label: "Large image", name: image, widget: image, required: false, choose_url: false }
+              - { label: "Describe the image", name: image_alt, widget: string, required: false }
+              - { label: "Video clip (MP4, optional)", name: video, widget: file, required: false, choose_url: false }
+              - label: "Mace stages"
+                name: stages
+                widget: list
+                summary: "{{fields.title}}"
+                fields:
+                  - { label: "Title", name: title, widget: string }
+                  - { label: "Text", name: text, widget: string }
+                  - { label: "Image", name: image, widget: image, required: false, choose_url: false }
+          - label: "Four senses"
+            name: senses
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Show", name: show, widget: boolean, default: true }
+              - { label: "Heading", name: heading, widget: string }
+              - { label: "Introduction", name: intro, widget: text }
+              - label: "Senses"
+                name: items
+                widget: list
+                summary: "{{fields.title}}"
+                fields:
+                  - { label: "Title", name: title, widget: string }
+                  - { label: "Subtitle", name: subtitle, widget: string }
+                  - { label: "Text", name: text, widget: text }
+                  - { label: "Photo", name: image, widget: image, required: false, choose_url: false }
+                  - { label: "Describe the photo", name: image_alt, widget: string, required: false }
+          - label: "From Source to Kitchen"
+            name: journey
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Show", name: show, widget: boolean, default: true }
+              - { label: "Heading", name: heading, widget: string }
+              - { label: "Introduction", name: intro, widget: text }
+              - label: "Steps"
+                name: steps
+                widget: list
+                summary: "{{fields.title}}"
+                fields:
+                  - { label: "Title", name: title, widget: string }
+                  - { label: "Text", name: text, widget: string }
+              - { label: "Note under the steps", name: note, widget: text, required: false }
+              - { label: "Photo", name: image, widget: image, required: false, choose_url: false }
+              - { label: "Describe the photo", name: image_alt, widget: string, required: false }
+              - { label: "Process film (MP4, optional)", name: video, widget: file, required: false, choose_url: false }
+          - label: "Shop preview"
+            name: shop
+            widget: object
+            collapsed: true
+            hint: "Shows products marked 'Featured on the homepage'."
+            fields:
+              - { label: "Show", name: show, widget: boolean, default: true }
+              - { label: "Heading", name: heading, widget: string }
+              - { label: "Introduction", name: intro, widget: text }
+              - { label: "Number of products", name: count, widget: number, value_type: int, min: 1, max: 12, default: 4 }
+              - { label: "Button label", name: button, widget: string }
+          - label: "Ghame Professional band"
+            name: professional
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Show", name: show, widget: boolean, default: true }
+              - { label: "Heading", name: heading, widget: string }
+              - { label: "Text", name: text, widget: text }
+              - { label: "Small note", name: note, widget: string, required: false }
+              - { label: "Photo", name: image, widget: image, required: false, choose_url: false }
+              - { label: "Describe the photo", name: image_alt, widget: string, required: false }
+          - label: "Export band"
+            name: export
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Show", name: show, widget: boolean, default: true }
+              - { label: "Heading", name: heading, widget: string }
+              - { label: "Text", name: text, widget: text }
+              - { label: "Photo", name: image, widget: image, required: false, choose_url: false }
+              - { label: "Describe the photo", name: image_alt, widget: string, required: false }
+          - label: "Quality You Can Trace"
+            name: quality
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Show", name: show, widget: boolean, default: true }
+              - { label: "Heading", name: heading, widget: string }
+              - { label: "Text", name: text, widget: text }
+              - label: "Traceability steps"
+                name: steps
+                widget: list
+                summary: "{{fields.title}}"
+                fields:
+                  - { label: "Title", name: title, widget: string }
+                  - { label: "Text", name: text, widget: string }
+          - label: "Recipes preview"
+            name: recipes
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Show", name: show, widget: boolean, default: true }
+              - { label: "Heading", name: heading, widget: string }
+              - { label: "Number of recipes", name: count, widget: number, value_type: int, min: 1, max: 6, default: 3 }
+          - label: "Born in Sri Lanka"
+            name: story
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Show", name: show, widget: boolean, default: true }
+              - { label: "Heading", name: heading, widget: string }
+              - { label: "Text", name: text, widget: text }
+              - { label: "Points", name: points, widget: list, summary: "{{fields.text}}", fields: [{ label: "Point", name: text, widget: string }] }
+              - { label: "Photo", name: image, widget: image, required: false, choose_url: false }
+              - { label: "Describe the photo", name: image_alt, widget: string, required: false }
+
+      - name: professional
+        label: "Ghame Professional and Export"
+        file: "src/_data/professional.json"
+        fields:
+          - { label: "Search title", name: seo_title, widget: string }
+          - { label: "Search description", name: seo_description, widget: text }
+          - label: "Hero"
+            name: hero
+            widget: object
+            fields:
+              - { label: "Heading", name: heading, widget: string }
+              - { label: "Text", name: text, widget: text }
+              - { label: "Photo", name: image, widget: image, required: false, choose_url: false }
+              - { label: "Describe the photo", name: image_alt, widget: string, required: false }
+          - label: "Customer types"
+            name: segments
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Heading", name: heading, widget: string }
+              - { label: "Introduction", name: intro, widget: text }
+              - { label: "Types", name: items, widget: list, summary: "{{fields.name}}", fields: [{ label: "Name", name: name, widget: string }, { label: "Text", name: text, widget: string }] }
+          - label: "Products and pack sizes table"
+            name: range
+            widget: object
+            collapsed: true
+            hint: "The table lists every product marked 'Available to HORECA' with its pack sizes."
+            fields:
+              - { label: "Heading", name: heading, widget: string }
+              - { label: "Introduction", name: intro, widget: text }
+          - label: "What Ghame Professional covers"
+            name: capabilities
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Heading", name: heading, widget: string }
+              - { label: "Introduction", name: intro, widget: text }
+              - label: "Services"
+                name: items
+                widget: list
+                summary: "{{fields.title}}  |  confirmed: {{fields.confirmed}}"
+                fields:
+                  - { label: "Title", name: title, widget: string }
+                  - { label: "Text", name: text, widget: string }
+                  - { label: "Confirmed by management (only confirmed services show)", name: confirmed, widget: boolean, default: false }
+          - label: "How supply works"
+            name: steps
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Heading", name: heading, widget: string }
+              - { label: "Steps", name: items, widget: list, summary: "{{fields.title}}", fields: [{ label: "Title", name: title, widget: string }, { label: "Text", name: text, widget: string }] }
+          - label: "Quotation form"
+            name: quote
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Heading", name: heading, widget: string }
+              - { label: "Introduction", name: intro, widget: text }
+              - { label: "Response promise (optional)", name: response_note, widget: string, required: false, hint: "For example: We reply within one working day." }
+              - { label: "Business types", name: business_types, widget: list }
+              - { label: "Volume options", name: volumes, widget: list }
+          - label: "Export section"
+            name: export
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Show", name: show, widget: boolean, default: true }
+              - { label: "Heading", name: heading, widget: string }
+              - { label: "Text", name: text, widget: text }
+              - { label: "Markets", name: markets, widget: list, required: false, field: { label: "Country", name: name, widget: string } }
+              - label: "Packaging formats"
+                name: formats
+                widget: list
+                required: false
+                summary: "{{fields.title}}"
+                fields:
+                  - { label: "Format", name: title, widget: string }
+                  - { label: "Details", name: text, widget: string }
+              - { label: "Private label text (optional)", name: private_label, widget: text, required: false }
+              - { label: "Export catalogue (PDF, optional)", name: catalogue, widget: file, required: false, choose_url: false }
+
+      - name: about
+        label: "Our story"
+        file: "src/_data/about.json"
+        fields:
+          - { label: "Search title", name: seo_title, widget: string }
+          - { label: "Search description", name: seo_description, widget: text }
+          - { label: "Heading", name: heading, widget: string }
+          - { label: "Lead paragraph", name: lead, widget: text }
+          - { label: "Full story", name: body, widget: markdown, required: false, buttons: ["bold", "italic", "link", "heading-three", "bulleted-list"], editor_components: [] }
+          - { label: "Photo", name: image, widget: image, required: false, choose_url: false }
+          - { label: "Describe the photo", name: image_alt, widget: string, required: false }
+          - { label: "Vision", name: vision, widget: text, required: false }
+          - { label: "Mission", name: mission, widget: text, required: false }
+          - label: "Company facts"
+            name: facts
+            widget: list
+            summary: "{{fields.label}}: {{fields.value}}"
+            hint: "Facts with an empty value are hidden."
+            fields:
+              - { label: "Label", name: label, widget: string }
+              - { label: "Value", name: value, widget: string, required: false }
+          - label: "How we make it"
+            name: process
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Heading", name: heading, widget: string }
+              - { label: "Introduction", name: intro, widget: text }
+              - { label: "Steps", name: steps, widget: list, summary: "{{fields.title}}", fields: [{ label: "Title", name: title, widget: string }, { label: "Text", name: text, widget: string }] }
+              - { label: "Photo", name: image, widget: image, required: false, choose_url: false }
+              - { label: "Describe the photo", name: image_alt, widget: string, required: false }
+          - label: "Quality"
+            name: quality
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Heading", name: heading, widget: string }
+              - { label: "Text", name: text, widget: text }
+              - { label: "Claims", name: claims, widget: list, summary: "{{fields.text}}", hint: "Publish only claims you hold evidence for.", fields: [{ label: "Claim", name: text, widget: string }] }
+
+  # ------------------------------------------------------------------ INFO PAGES
+  - name: info
+    label: "Information pages"
+    label_singular: "Information page"
+    description: "Privacy, terms, delivery and returns, FAQ. Published pages are linked in the footer."
+    folder: "src/pages"
+    extension: md
+    format: frontmatter
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    editor: { preview: false }
+    fields:
+      - { label: "Title", name: title, widget: string }
+      - { label: "Published", name: published, widget: boolean, default: false }
+      - { label: "Footer order", name: order, widget: number, value_type: int, default: 100 }
+      - { label: "Short description", name: summary, widget: text, required: false }
+      - { label: "Content", name: body, widget: markdown }
+
+  # ------------------------------------------------------------------ SETTINGS
+  - name: settings
+    label: "Settings"
+    editor: { preview: false }
+    files:
+      - name: site
+        label: "Business details, contact and store"
+        file: "src/_data/site.json"
+        fields:
+          - { label: "Brand name", name: brand, widget: string }
+          - { label: "Company name", name: company, widget: string }
+          - { label: "Tagline", name: tagline, widget: string }
+          - { label: "Signature line", name: signature, widget: string }
+          - { label: "Website address", name: url, widget: string, hint: "For example https://ghame.lk" }
+          - { label: "Company registration number", name: registration, widget: string, required: false, hint: "Shown in the footer, for example PV 00292189" }
+          - { label: "Logo (colour)", name: logo, widget: image, choose_url: false, hint: "Never recolour or stretch the logo." }
+          - { label: "Logo (white, for dark backgrounds)", name: logo_white, widget: image, choose_url: false }
+          - { label: "Social sharing image (1200 x 630)", name: og_image, widget: image, choose_url: false }
+          - label: "Search engines"
+            name: seo
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Homepage title", name: home_title, widget: string }
+              - { label: "Default description", name: description, widget: text }
+          - label: "Announcement bar"
+            name: announcement
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Show", name: enabled, widget: boolean, default: false }
+              - { label: "Text", name: text, widget: string, required: false }
+              - { label: "Link (optional)", name: link, widget: string, required: false }
+          - label: "Contact"
+            name: contact
+            widget: object
+            fields:
+              - { label: "WhatsApp number (international, digits only)", name: whatsapp, widget: string, pattern: ["^94[0-9]{9}$", "Use 94 then 9 digits, for example 94702030100"] }
+              - { label: "WhatsApp number as shown to customers", name: whatsapp_label, widget: string }
+              - label: "Phone numbers"
+                name: phones
+                widget: list
+                summary: "{{fields.label}}: {{fields.number}}"
+                fields:
+                  - { label: "Label", name: label, widget: string, hint: "For example Orders or B2B sales" }
+                  - { label: "Number", name: number, widget: string }
+              - { label: "Email", name: email, widget: string }
+              - { label: "B2B and export email (optional)", name: b2b_email, widget: string, required: false }
+              - { label: "Opening hours, as shown", name: hours_text, widget: string }
+              - { label: "Open days", name: open_days, widget: select, multiple: true, options: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] }
+              - { label: "Opening time (24 h, for example 09:00)", name: open_time, widget: string, pattern: ["^[0-2][0-9]:[0-5][0-9]$", "Use HH:MM"] }
+              - { label: "Closing time (24 h, for example 17:00)", name: close_time, widget: string, pattern: ["^[0-2][0-9]:[0-5][0-9]$", "Use HH:MM"] }
+              - { label: "Google Maps link (optional)", name: map_link, widget: string, required: false }
+          - label: "Addresses"
+            name: addresses
+            widget: list
+            summary: "{{fields.label}}  |  confirmed: {{fields.confirmed}}"
+            hint: "An address shows on the website only when 'Confirmed by administrator' is ticked."
+            fields:
+              - { label: "Label", name: label, widget: string }
+              - { label: "Address", name: address, widget: text, required: false }
+              - { label: "Confirmed by administrator", name: confirmed, widget: boolean, default: false }
+          - label: "Social and marketplace accounts"
+            name: social
+            widget: list
+            summary: "{{fields.network}}  |  confirmed: {{fields.confirmed}}"
+            hint: "Only confirmed accounts are linked."
+            fields:
+              - { label: "Network", name: network, widget: string }
+              - { label: "Link", name: url, widget: string, required: false }
+              - { label: "Confirmed company-owned and active", name: confirmed, widget: boolean, default: false }
+          - label: "Certifications"
+            name: certifications
+            widget: list
+            summary: "{{fields.name}}  |  verified: {{fields.verified}}  |  expires {{fields.expiry}}"
+            hint: "A certification shows only when Verified is ticked and the expiry date has not passed."
+            fields:
+              - { label: "Standard", name: name, widget: string, hint: "Short name, for example ISO 22000:2018" }
+              - { label: "Standard in full", name: standard, widget: string, required: false }
+              - { label: "Certification body", name: body, widget: string, required: false }
+              - { label: "Certificate number", name: number, widget: string, required: false }
+              - { label: "Scope", name: scope, widget: text, required: false }
+              - { label: "Issue date", name: issued, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, required: false, default: "" }
+              - { label: "Expiry / recertification date", name: expiry, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, required: false, default: "" }
+              - { label: "Next surveillance audit", name: next_surveillance, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, required: false, default: "" }
+              - { label: "Mark or logo (optional)", name: logo, widget: image, required: false, choose_url: false, hint: "Use only marks the certification body allows. Never the ISO organisation logo." }
+              - { label: "Certificate preview image", name: preview, widget: image, required: false, choose_url: false }
+              - { label: "Certificate (PDF)", name: certificate, widget: file, required: false, choose_url: false }
+              - { label: "Verification link", name: verify_url, widget: string, required: false }
+              - { label: "Verified by administrator", name: verified, widget: boolean, default: false }
+          - label: "Store"
+            name: store
+            widget: object
+            fields:
+              - { label: "Online ordering open", name: orders_open, widget: boolean, default: true, hint: "Untick to pause the cart. WhatsApp chat stays available." }
+              - { label: "Message when ordering is paused", name: closed_message, widget: text }
+              - { label: "Low stock warning at (packs)", name: low_stock_threshold, widget: number, value_type: int, min: 0, default: 5 }
+              - { label: "Show 'Only X left' to customers", name: show_stock_count, widget: boolean, default: true }
+              - { label: "Order number prefix", name: order_prefix, widget: string, default: "GS" }
+              - { label: "Delivery options", name: delivery_methods, widget: list }
+              - { label: "Checkout note", name: checkout_note, widget: text }
+              - { label: "Label for products without a price", name: price_on_request_label, widget: string }
+
+      - name: categories
+        label: "Shop categories"
+        file: "src/_data/categories.json"
+        fields:
+          - label: "Categories"
+            name: items
+            widget: list
+            summary: "{{fields.name}}"
+            hint: "The ID is used in links; change it only if no product uses it."
+            fields:
+              - { label: "Name", name: name, widget: string }
+              - { label: "ID (lower case, hyphens)", name: id, widget: string, pattern: ["^[a-z0-9-]+$", "Lower case letters, numbers and hyphens only"] }
+              - { label: "Description", name: description, widget: string, required: false }
+
+  # ------------------------------------------------------------------ GOVERNANCE
+  - name: governance
+    label: "Governance"
+    editor: { preview: false }
+    files:
+      - name: verification
+        label: "Content verification register"
+        file: "src/_data/verification.json"
+        description: "Every published fact, its source and its approval. The printable report is at /admin/register/."
+        fields:
+          - { label: "Title", name: title, widget: string }
+          - { label: "Last management review", name: last_review, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+          - { label: "Review note", name: review_note, widget: text, required: false }
+          - label: "Register entries"
+            name: items
+            widget: list
+            summary: "{{fields.ref}}  |  {{fields.item}}  |  {{fields.status}}"
+            fields:
+              - { label: "Reference", name: ref, widget: string, hint: "For example VR-31" }
+              - { label: "Area", name: area, widget: select, options: ["Company", "Address", "Contact", "Certification", "Product", "Price", "Claim", "Process", "Content", "Media", "Legal", "Technical"] }
+              - { label: "Item", name: item, widget: string }
+              - { label: "Value found or published", name: value_found, widget: text }
+              - { label: "Source", name: source, widget: string }
+              - { label: "Status", name: status, widget: select, options: ["Verified current", "Requires update", "Admin verification required", "Content required from Ghame"] }
+              - { label: "Action", name: action, widget: text }
+              - { label: "Owner", name: owner, widget: string, required: false }
+              - { label: "Due date", name: due, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, required: false, default: "" }
+              - { label: "Last reviewed", name: reviewed_on, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, required: false, default: "" }
+              - { label: "Approved by", name: approved_by, widget: string, required: false }
+              - { label: "Notes", name: notes, widget: text, required: false }

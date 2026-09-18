@@ -1,0 +1,9 @@
+{
+  "items": [
+    { "id": "curry-powders", "name": "Curry Powders", "description": "Raw, roasted and dish-specific curry blends." },
+    { "id": "ground-spices", "name": "Ground Spices", "description": "Single spices, cleaned, dried and ground." },
+    { "id": "whole-spices", "name": "Whole Spices", "description": "Spices as they come from the plant, dried whole." },
+    { "id": "premium-spices", "name": "Premium Spices", "description": "Limited and specialty spices." },
+    { "id": "gift-collections", "name": "Gift Collections", "description": "Curated sets for gifting." }
+  ]
+}

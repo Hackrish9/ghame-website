@@ -1,0 +1,66 @@
+{% import "partials/icons.njk" as ic %}
+{%- set addresses = site.addresses | confirmedAddresses %}
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <img src="{{ site.logo_white }}" alt="{{ site.company }}" width="100" height="128" loading="lazy">
+      <p class="footer-tagline">{{ site.tagline }}</p>
+      <p class="footer-sign">{{ site.signature }}</p>
+    </div>
+    <nav class="footer-col" aria-label="Shop">
+      <p class="footer-h">Shop</p>
+      {%- for c in categories.items %}
+      {%- if collections.shopProducts | inCategory(c.id) | length %}
+      <a href="/shop/?category={{ c.id }}">{{ c.name }}</a>
+      {%- endif %}
+      {%- endfor %}
+      <a href="/cart/">Your cart</a>
+    </nav>
+    <nav class="footer-col" aria-label="Business">
+      <p class="footer-h">Business</p>
+      <a href="/professional/">Ghame Professional</a>
+      <a href="/professional/#quote">Request a quotation</a>
+      <a href="/professional/#export">Export</a>
+    </nav>
+    <nav class="footer-col" aria-label="Company">
+      <p class="footer-h">Company</p>
+      <a href="/our-story/">Our story</a>
+      <a href="/recipes/">Recipes</a>
+      <a href="/contact/">Contact</a>
+      {%- for p in collections.infoPages %}
+      <a href="{{ p.url }}">{{ p.data.title }}</a>
+      {%- endfor %}
+    </nav>
+    <div class="footer-col footer-contact">
+      <p class="footer-h">Contact</p>
+      {%- if site.contact.whatsapp %}
+      <a href="{{ site.contact.whatsapp | waLink('Hello ' ~ site.brand ~ ', ') }}" target="_blank" rel="noopener">{{ ic.icon("whatsapp", 18) }} WhatsApp {{ site.contact.whatsapp_label }}</a>
+      {%- endif %}
+      {%- for ph in site.contact.phones %}{% if ph.number %}
+      <a href="{{ ph.number | telLink }}">{{ ic.icon("phone", 18) }} {{ ph.number }}</a>
+      {%- endif %}{% endfor %}
+      {%- if site.contact.email %}
+      <a href="mailto:{{ site.contact.email }}">{{ ic.icon("mail", 18) }} {{ site.contact.email }}</a>
+      {%- endif %}
+      {%- if site.contact.hours_text %}
+      <p>{{ ic.icon("clock", 18) }} {{ site.contact.hours_text }}</p>
+      {%- endif %}
+      {%- for a in addresses %}
+      <p>{{ ic.icon("pin", 18) }} <span><strong>{{ a.label }}:</strong> {{ a.address }}</span></p>
+      {%- endfor %}
+    </div>
+  </div>
+  <div class="wrap footer-base">
+    <p>&copy; {% year %} {{ site.company }}{% if site.registration %}. Company No. {{ site.registration }}{% endif %}</p>
+    <p class="footer-social">
+      {%- for s in site.social %}{% if s.confirmed and s.url %}
+      <a href="{{ s.url }}" target="_blank" rel="noopener">{{ s.network }}</a>
+      {%- endif %}{% endfor %}
+    </p>
+  </div>
+</footer>
+<nav class="mobile-bar" aria-label="Quick actions">
+  <a href="/shop/">{{ ic.icon("box", 20) }}<span>Shop</span></a>
+  <a href="/cart/" data-cart-link>{{ ic.icon("cart", 20) }}<span>Cart <span class="cart-count" data-cart-count hidden>0</span></span></a>
+  <button type="button" data-wa-toggle aria-controls="wa-panel" aria-expanded="false">{{ ic.icon("whatsapp", 20) }}<span>WhatsApp</span></button>
+</nav>

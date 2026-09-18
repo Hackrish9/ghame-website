@@ -1,0 +1,22 @@
+{% import "partials/icons.njk" as ic %}
+{%- set u = page.url or "" %}
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="/" aria-label="{{ site.brand }} home">
+      <img src="{{ site.logo }}" alt="{{ site.company }}" width="137" height="176">
+    </a>
+    <nav class="main-nav" id="main-nav" aria-label="Main">
+      <a href="/shop/"{% if u.startsWith("/shop") %} aria-current="page"{% endif %}>Shop</a>
+      <a href="/professional/"{% if u.startsWith("/professional") %} aria-current="page"{% endif %}>Ghame Professional</a>
+      <a href="/professional/#export">Export</a>
+      <a href="/recipes/"{% if u.startsWith("/recipes") %} aria-current="page"{% endif %}>Recipes</a>
+      <a href="/our-story/"{% if u.startsWith("/our-story") %} aria-current="page"{% endif %}>Our story</a>
+      <a href="/contact/"{% if u.startsWith("/contact") %} aria-current="page"{% endif %}>Contact</a>
+    </nav>
+    <div class="header-tools">
+      <a class="icon-btn" href="/shop/#search" aria-label="Search products">{{ ic.icon("search") }}</a>
+      <a class="icon-btn cart-link" href="/cart/" aria-label="Cart" data-cart-link>{{ ic.icon("cart") }}<span class="cart-count" data-cart-count hidden>0</span></a>
+      <button class="icon-btn menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu" data-menu-toggle>{{ ic.icon("menu") }}</button>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,49 @@
+---
+layout: layouts/base.njk
+title: Contact
+permalink: /contact/
+seo_title: "Contact Ghame Spice"
+seo_description: "Order, ask a question or request a quotation from Ghame Spice by WhatsApp, phone or email."
+---
+{% import "partials/icons.njk" as ic %}
+{%- set addresses = site.addresses | confirmedAddresses %}
+<section class="page-head">
+  <div class="wrap">
+    <h1>Talk to Ghame</h1>
+    <p class="lead">WhatsApp is the quickest way to reach us for orders and questions.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap quote-grid">
+    <form class="form card-form" data-enquiry="contact" novalidate>
+      <h2>Send us a message</h2>
+      <div class="form-grid">
+        <div class="field"><label for="m-name">Your name</label><input id="m-name" name="Name" required autocomplete="name"></div>
+        <div class="field"><label for="m-phone">Phone</label><input id="m-phone" name="Phone" type="tel" autocomplete="tel"></div>
+        <div class="field field-wide"><label for="m-msg">Message</label><textarea id="m-msg" name="Message" rows="4" required></textarea></div>
+      </div>
+      <p class="form-error" data-form-error hidden></p>
+      <div class="btn-row">
+        <button class="btn btn-wa" type="submit" data-via="whatsapp">{{ ic.icon("whatsapp", 20) }} Send on WhatsApp</button>
+        {%- if site.contact.email %}<button class="btn btn-outline" type="submit" data-via="email">{{ ic.icon("mail", 20) }} Send by email</button>{% endif %}
+      </div>
+    </form>
+    <aside class="contact-aside" aria-label="Contact details">
+      <h2>Contact details</h2>
+      <ul class="contact-lines">
+        {%- if site.contact.whatsapp %}<li><a href="{{ site.contact.whatsapp | waLink('Hello ' ~ site.brand ~ ', ') }}" target="_blank" rel="noopener">{{ ic.icon("whatsapp", 18) }} WhatsApp {{ site.contact.whatsapp_label }}</a></li>{% endif %}
+        {%- for ph in site.contact.phones %}{% if ph.number %}<li><a href="{{ ph.number | telLink }}">{{ ic.icon("phone", 18) }} {{ ph.label }}: {{ ph.number }}</a></li>{% endif %}{% endfor %}
+        {%- if site.contact.email %}<li><a href="mailto:{{ site.contact.email }}">{{ ic.icon("mail", 18) }} {{ site.contact.email }}</a></li>{% endif %}
+        {%- if site.contact.b2b_email %}<li><a href="mailto:{{ site.contact.b2b_email }}">{{ ic.icon("mail", 18) }} Business: {{ site.contact.b2b_email }}</a></li>{% endif %}
+        {%- if site.contact.hours_text %}<li><span>{{ ic.icon("clock", 18) }} {{ site.contact.hours_text }}</span></li>{% endif %}
+      </ul>
+      {%- if addresses.length %}
+      <h3>Find us</h3>
+      <ul class="contact-lines">
+        {%- for a in addresses %}<li><span>{{ ic.icon("pin", 18) }} <span><strong>{{ a.label }}:</strong> {{ a.address }}</span></span></li>{% endfor %}
+      </ul>
+      {%- if site.contact.map_link %}<a class="text-link" href="{{ site.contact.map_link }}" target="_blank" rel="noopener">Open in Google Maps</a>{% endif %}
+      {%- endif %}
+    </aside>
+  </div>
+</section>

@@ -1,0 +1,11 @@
+{#- Expects `r` (a recipe) -#}
+<article class="recipe-card">
+  <a class="rc-media{% if (r.data.image or '') | isSvg %} is-illustration{% endif %}" href="{{ r.url }}" tabindex="-1" aria-hidden="true">
+    <img src="{{ r.data.image or '/assets/img/illustrations/curry-pot.svg' }}" alt="" loading="lazy" width="400" height="300">
+  </a>
+  <div class="rc-body">
+    <h3><a href="{{ r.url }}">{{ r.data.title }}</a></h3>
+    <p>{{ r.data.summary }}</p>
+    <p class="rc-meta">{% if r.data.time %}{{ r.data.time }}{% endif %}{% if r.data.time and r.data.serves %}, {% endif %}{% if r.data.serves %}serves {{ r.data.serves }}{% endif %}</p>
+  </div>
+</article>

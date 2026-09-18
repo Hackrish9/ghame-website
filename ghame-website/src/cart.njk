@@ -1,0 +1,54 @@
+---
+layout: layouts/base.njk
+title: Your cart
+permalink: /cart/
+noindex: true
+---
+{% import "partials/icons.njk" as ic %}
+<section class="page-head">
+  <div class="wrap">
+    <h1>Your cart</h1>
+    <p class="lead">{{ site.store.checkout_note }}</p>
+  </div>
+</section>
+<section class="section cart" aria-label="Cart and order details">
+  <div class="wrap cart-grid" data-cart>
+    <div>
+      <div class="cart-lines" data-cart-lines>
+        <p class="muted">Loading your cart.</p>
+      </div>
+      <noscript><p class="notice">Your cart needs JavaScript. You can also order directly on <a href="{{ site.contact.whatsapp | waLink('Hello ' ~ site.brand ~ ', I would like to order: ') }}">WhatsApp</a>.</p></noscript>
+    </div>
+    <aside class="checkout" aria-labelledby="checkout-h" data-checkout hidden>
+      <h2 id="checkout-h">Send your order</h2>
+      <dl class="totals">
+        <div><dt>Items</dt><dd data-cart-items>0</dd></div>
+        <div><dt>Items total</dt><dd data-cart-total>LKR 0.00</dd></div>
+      </dl>
+      <p class="fine" data-cart-por hidden>Some items are priced on request. Ghame confirms their price on WhatsApp.</p>
+      {%- if site.store.orders_open %}
+      <form class="form" data-checkout-form novalidate>
+        <div class="field"><label for="c-name">Your name</label><input id="c-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="c-phone">Phone</label><input id="c-phone" name="phone" type="tel" autocomplete="tel" required></div>
+        <div class="field"><label for="c-method">Delivery</label>
+          <select id="c-method" name="method">{% for m in site.store.delivery_methods %}<option>{{ m }}</option>{% endfor %}</select></div>
+        <div class="field"><label for="c-address">Delivery address</label><textarea id="c-address" name="address" rows="2" autocomplete="street-address"></textarea></div>
+        <div class="field"><label for="c-city">City</label><input id="c-city" name="city" autocomplete="address-level2"></div>
+        <div class="field"><label for="c-country">Country</label><input id="c-country" name="country" value="Sri Lanka" autocomplete="country-name"></div>
+        <div class="field"><label for="c-note">Note for Ghame (optional)</label><textarea id="c-note" name="note" rows="2"></textarea></div>
+        <p class="form-error" data-form-error hidden></p>
+        <button class="btn btn-wa btn-block" type="submit">{{ ic.icon("whatsapp", 20) }} Send order on WhatsApp</button>
+        <p class="fine">WhatsApp opens with your order written out. Press send there. Nothing is paid on this website.</p>
+      </form>
+      {%- else %}
+      <p class="notice">{{ site.store.closed_message }}</p>
+      <a class="btn btn-wa btn-block" href="{{ site.contact.whatsapp | waLink('Hello ' ~ site.brand ~ ', ') }}" target="_blank" rel="noopener">{{ ic.icon("whatsapp", 20) }} Message us on WhatsApp</a>
+      {%- endif %}
+      <div class="sent" data-cart-sent hidden>
+        <h3>Order <span data-order-ref></span> is ready in WhatsApp</h3>
+        <p>Press send in WhatsApp. Keep your cart until we confirm the order, then clear it.</p>
+        <button class="btn btn-outline btn-block" type="button" data-cart-clear>Clear cart</button>
+      </div>
+    </aside>
+  </div>
+</section>

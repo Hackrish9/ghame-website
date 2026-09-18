@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 520" width="560" height="520">
+<circle cx="280" cy="270" r="238" fill="#F7F3EA"></circle>
+<path d="M280 118 C 282 92, 290 72, 304 58" fill="none" stroke="#5A4630" stroke-width="5" stroke-linecap="round"></path>
+<path d="M304 58 C 350 26, 412 36, 442 62 C 400 80, 350 82, 304 58 Z" fill="#2F5E2A"></path>
+<path d="M304 58 Q 372 62 438 62" fill="none" stroke="#6E9A5A" stroke-width="1.2"></path>
+<path d="M296 68 C 262 30, 204 28, 174 48 C 212 70, 262 80, 296 68 Z" fill="#3B6E33"></path>
+<path d="M252 116 C 170 124, 120 200, 128 282 C 136 364, 192 424, 256 430 C 226 380, 216 320, 216 272 C 216 216, 228 160, 252 116 Z" fill="#E8D08A" stroke="#B89A48" stroke-width="2"></path>
+<path d="M308 116 C 390 124, 440 200, 432 282 C 424 364, 368 424, 304 430 C 334 380, 344 320, 344 272 C 344 216, 332 160, 308 116 Z" fill="#E8D08A" stroke="#B89A48" stroke-width="2"></path>
+<path d="M250 122 C 230 170, 222 220, 222 272 C 222 324, 232 372, 254 424" fill="none" stroke="#F5EAC4" stroke-width="7"></path>
+<path d="M310 122 C 330 170, 338 220, 338 272 C 338 324, 328 372, 306 424" fill="none" stroke="#F5EAC4" stroke-width="7"></path>
+<ellipse cx="280" cy="276" rx="58" ry="76" fill="#4A2E1E"></ellipse>
+<g fill="none" stroke="#C7271D" stroke-linecap="round">
+<path d="M278 202 C 246 218, 232 258, 240 298 C 246 328, 258 342, 268 348" stroke-width="12"></path>
+<path d="M282 202 C 312 214, 326 254, 318 294 C 312 324, 298 340, 288 348" stroke-width="12"></path>
+<path d="M264 208 C 256 238, 270 268, 262 308" stroke-width="8"></path>
+<path d="M296 210 C 304 240, 290 270, 300 310" stroke-width="8"></path>
+<path d="M244 250 C 264 262, 296 262, 316 250" stroke-width="6"></path>
+<path d="M242 300 C 264 290, 296 290, 318 302" stroke-width="6"></path>
+</g>
+<g font-family="Albert Sans, Arial, sans-serif" font-size="15" fill="#242321">
+<path d="M330 236 L 452 196" stroke="#242321" stroke-width="1"></path><text x="458" y="192">Mace</text><text x="458" y="210" fill="#5E574C" font-size="13">the red aril</text>
+<path d="M300 330 L 450 380" stroke="#242321" stroke-width="1"></path><text x="456" y="386">Nutmeg</text><text x="456" y="404" fill="#5E574C" font-size="13">the seed</text>
+<path d="M150 300 L 70 340" stroke="#242321" stroke-width="1"></path><text x="26" y="360">Fruit</text><text x="26" y="378" fill="#5E574C" font-size="13">split open</text>
+</g>
+</svg>

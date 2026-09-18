@@ -1,0 +1,42 @@
+---
+layout: layouts/base.njk
+ogType: article
+---
+{% import "partials/icons.njk" as ic %}
+{%- set spiceProducts = collections.shopProducts | findProducts(spices) %}
+<nav class="wrap crumbs" aria-label="Breadcrumb">
+  <a href="/recipes/">Recipes</a><span aria-hidden="true">/</span><span aria-current="page">{{ title }}</span>
+</nav>
+<article class="recipe wrap">
+  <header class="recipe-head">
+    <div>
+      <h1>{{ title }}</h1>
+      <p class="lead">{{ summary }}</p>
+      <p class="rc-meta">{% if time %}{{ ic.icon("clock", 18) }} {{ time }}{% endif %}{% if serves %}&ensp;Serves {{ serves }}{% endif %}</p>
+    </div>
+    <img class="recipe-img{% if (image or '') | isSvg %} is-illustration{% endif %}" src="{{ image or '/assets/img/illustrations/curry-pot.svg' }}" alt="{{ image_alt or title }}" width="800" height="600">
+  </header>
+  <div class="recipe-body">
+    <section aria-labelledby="ing-h">
+      <h2 id="ing-h">Ingredients</h2>
+      <ul class="ingredients">{% for i in ingredients %}<li>{{ i }}</li>{% endfor %}</ul>
+    </section>
+    <section aria-labelledby="method-h">
+      <h2 id="method-h">Method</h2>
+      <div class="prose method">{{ content | safe }}</div>
+    </section>
+  </div>
+</article>
+{%- if spiceProducts.length %}
+<section class="section related" aria-labelledby="spices-h">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="spices-h">The Ghame spices in this recipe</h2>
+      {%- if site.store.orders_open %}
+      <button class="btn btn-cart" type="button" data-add-all="{% for p in spiceProducts %}{{ p.fileSlug }}{% if not loop.last %},{% endif %}{% endfor %}">Add all to cart</button>
+      {%- endif %}
+    </div>
+    <div class="product-grid">{% for p in spiceProducts %}{% include "partials/product-card.njk" %}{% endfor %}</div>
+  </div>
+</section>
+{%- endif %}

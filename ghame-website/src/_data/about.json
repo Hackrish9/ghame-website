@@ -1,0 +1,83 @@
+{
+  "seo_title": "Our Story: Sri Lankan Spices Ground and Packed in Hokandara",
+  "seo_description": "How Ghame Spice (Pvt) Ltd sorts, cleans, grinds and tests Sri Lankan spices in its ISO 22000, HACCP and GMP certified factory in Hokandara.",
+  "heading": "Born in Sri Lanka.",
+  "lead": "Ghame Spice (Pvt) Ltd was incorporated in January 2024 to add value to Sri Lanka's spices at home, in the processing as well as the growing.",
+  "body": "Sri Lanka's spices and herbs are known around the world, yet the processed spice on the shelf has not always matched the crop in the field. Our founder kept meeting the same problem: flavour, colour and aroma that changed from one pack to the next.\n\nGhame was set up to close that gap. We choose crops from local growers, sort, clean and grind them in our own factory in Hokandara, and test samples of every product at a recognised, accredited laboratory. Our food safety system is certified to ISO 22000:2018, HACCP and GMP.\n\nOur director leads research and development personally, so a hotel, food manufacturer or retailer that needs a custom blend gets one quickly. We keep the team close and communication open, which is how we answer requests and feedback fast.\n\nToday Ghame supplies households, professional kitchens, food manufacturers and retailers in Sri Lanka and abroad.",
+  "image": "/assets/uploads/photos/spices-on-wooden-spoons.jpg",
+  "image_alt": "Whole and ground spices on wooden spoons",
+  "facts": [
+    {
+      "label": "Company",
+      "value": "Ghame Spice (Pvt) Ltd"
+    },
+    {
+      "label": "Company number",
+      "value": "PV 00292189"
+    },
+    {
+      "label": "Incorporated",
+      "value": "January 2024"
+    },
+    {
+      "label": "Factory",
+      "value": "Hokandara North, Malabe"
+    },
+    {
+      "label": "Certified",
+      "value": "ISO 22000, HACCP, GMP"
+    }
+  ],
+  "process": {
+    "heading": "How we make it",
+    "intro": "Six stages for every spice we make, under a food safety system certified to ISO 22000:2018.",
+    "steps": [
+      {
+        "title": "Select",
+        "text": "Crops chosen from local growers and inspected when they arrive."
+      },
+      {
+        "title": "Sort and clean",
+        "text": "Sorted by hand and machine to remove stones, stems, insects and other foreign matter."
+      },
+      {
+        "title": "Wash and dry",
+        "text": "Washed clean, then dried until ready to grind."
+      },
+      {
+        "title": "Grind",
+        "text": "Ground to the size you need, from cracked to fine powder."
+      },
+      {
+        "title": "Test",
+        "text": "Samples of every product tested at a recognised, accredited laboratory."
+      },
+      {
+        "title": "Pack and deliver",
+        "text": "Packed, labelled with its batch, stored and dispatched on time."
+      }
+    ],
+    "image": "/assets/uploads/photos/spice-bowls-on-table.jpg",
+    "image_alt": "Wooden bowls of whole and ground spices"
+  },
+  "quality": {
+    "heading": "Quality You Can Trace.",
+    "text": "Every Ghame spice is made under a food safety system certified to ISO 22000:2018, HACCP and GMP. Send us the batch code printed on your pack and we will tell you where it came from.",
+    "claims": [
+      {
+        "text": "Samples of every product tested at a recognised, accredited laboratory."
+      },
+      {
+        "text": "No added colours, flavour enhancers or fragrances."
+      },
+      {
+        "text": "Certified to ISO 22000:2018, HACCP and GMP."
+      },
+      {
+        "text": "Samples available to check before you buy."
+      }
+    ]
+  },
+  "vision": "To be Sri Lanka's leading spice and herb company, processing and promoting the value of Ceylon spices and herbs around the world.",
+  "mission": "To provide the highest quality spices and herbs as ingredients for leading brands, and to keep improving the lives of our people and our society, and our processes and technology."
+}

@@ -1,0 +1,33 @@
+{% import "partials/icons.njk" as ic %}
+{%- if site.contact.whatsapp %}
+<div class="wa" data-wa>
+  <button class="wa-fab" type="button" aria-controls="wa-panel" aria-expanded="false" data-wa-toggle>
+    {{ ic.icon("whatsapp", 26) }}<span>Chat with us</span>
+  </button>
+  <section class="wa-panel" id="wa-panel" aria-labelledby="wa-title" hidden>
+    <div class="wa-head">
+      <div>
+        <h2 id="wa-title">Chat with {{ site.brand }} on WhatsApp</h2>
+        <p class="wa-status" data-wa-status>{{ site.contact.hours_text }}</p>
+      </div>
+      <button class="icon-btn" type="button" aria-label="Close chat" data-wa-close>{{ ic.icon("close") }}</button>
+    </div>
+    <form class="wa-form" data-wa-form>
+      <fieldset>
+        <legend>What is it about?</legend>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="topic" value="An order" checked><span>An order</span></label>
+          <label class="chip"><input type="radio" name="topic" value="A product question"><span>A product</span></label>
+          <label class="chip"><input type="radio" name="topic" value="HORECA or wholesale supply"><span>HORECA or wholesale</span></label>
+          <label class="chip"><input type="radio" name="topic" value="Export"><span>Export</span></label>
+          <label class="chip"><input type="radio" name="topic" value="Something else"><span>Something else</span></label>
+        </div>
+      </fieldset>
+      <label class="field-label" for="wa-message">Your message</label>
+      <textarea id="wa-message" name="message" rows="3" placeholder="Type your question here"></textarea>
+      <button class="btn btn-wa" type="submit">{{ ic.icon("whatsapp", 20) }} Open WhatsApp</button>
+      <p class="fine">WhatsApp opens with your message written out. Press send there.</p>
+    </form>
+  </section>
+</div>
+{%- endif %}

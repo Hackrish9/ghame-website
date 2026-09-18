@@ -1,0 +1,24 @@
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  X-Frame-Options: SAMEORIGIN
+
+/assets/img/*
+  Cache-Control: public, max-age=2592000
+
+/assets/uploads/*
+  Cache-Control: public, max-age=2592000
+
+/assets/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/products.json
+  Cache-Control: public, max-age=60
+
+/admin/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store

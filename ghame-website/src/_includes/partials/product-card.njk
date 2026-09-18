@@ -1,0 +1,26 @@
+{#- Expects `p` (a product from collections.shopProducts) -#}
+{%- set img = p.data.images[0] if p.data.images and p.data.images.length else { src: "/assets/img/illustrations/seeds.svg", alt: "" } %}
+{%- set cheapest = p.data.variants | priceFrom %}
+{%- set stock = p.data.variants | totalStock %}
+{%- set single = p.data.variants.length == 1 %}
+<article class="product-card" data-product-card data-category="{{ p.data.category }}" data-name="{{ (p.data.title ~ ' ' ~ (p.data.title_si or '') ~ ' ' ~ (p.data.summary or '')) | lower }}">
+  <a class="pc-media{% if img.src | isSvg %} is-illustration{% endif %}" href="{{ p.url }}" tabindex="-1" aria-hidden="true">
+    <img src="{{ img.src }}" alt="" loading="lazy" width="400" height="300">
+  </a>
+  <div class="pc-body">
+    <h3 class="pc-title"><a href="{{ p.url }}">{{ p.data.title }}</a></h3>
+    {%- if p.data.title_si %}<p class="si pc-si" lang="si">{{ p.data.title_si }}</p>{% endif %}
+    <p class="pc-packs">{% for v in p.data.variants %}{{ v.pack }}{% if not loop.last %}, {% endif %}{% endfor %}</p>
+    <p class="pc-price">{% if cheapest %}{{ cheapest.price | lkr }} <span class="pc-per">/ {{ cheapest.pack }}</span>{% else %}{{ site.store.price_on_request_label }}{% endif %}</p>
+    {%- if stock <= 0 %}<p class="stock-note is-out">Out of stock</p>{% endif %}
+    <div class="pc-actions">
+      {%- if single and stock > 0 and site.store.orders_open %}
+      <button class="btn btn-cart" type="button" data-add data-id="{{ p.fileSlug }}" data-sku="{{ p.data.variants[0].sku }}" data-name="{{ p.data.title }} {{ p.data.variants[0].pack }}">Add to cart</button>
+      {%- elif stock > 0 %}
+      <a class="btn btn-outline" href="{{ p.url }}">Choose pack size</a>
+      {%- else %}
+      <a class="btn btn-outline" href="{{ site.contact.whatsapp | waLink('Hello ' ~ site.brand ~ ', when will ' ~ p.data.title ~ ' be back in stock?') }}" target="_blank" rel="noopener">Ask about stock</a>
+      {%- endif %}
+    </div>
+  </div>
+</article>

@@ -1,0 +1,127 @@
+---
+layout: layouts/base.njk
+ogType: product
+---
+{% import "partials/icons.njk" as ic %}
+{%- set images = images if (images and images.length) else [{ src: "/assets/img/illustrations/seeds.svg", alt: title }] %}
+{%- set catName = category | categoryName(categories) %}
+{%- set first = variants | firstAvailable %}
+{%- set greet = "Hello " ~ site.brand ~ ", " %}
+
+<nav class="wrap crumbs" aria-label="Breadcrumb">
+  <a href="/shop/">Shop</a>
+  {%- if catName %}<span aria-hidden="true">/</span><a href="/shop/?category={{ category }}">{{ catName }}</a>{% endif %}
+  <span aria-hidden="true">/</span><span aria-current="page">{{ title }}</span>
+</nav>
+
+<section class="product wrap" data-product data-id="{{ page.fileSlug }}" data-title="{{ title }}">
+  <div class="gallery" data-gallery>
+    <div class="gallery-main{% if images[0].src | isSvg %} is-illustration{% endif %}" data-gallery-main>
+      <img src="{{ images[0].src }}" alt="{{ images[0].alt or title }}" width="800" height="600" fetchpriority="high">
+    </div>
+    {%- if images.length > 1 %}
+    <div class="gallery-thumbs" role="group" aria-label="Product images">
+      {%- for im in images %}
+      <button type="button" class="thumb{% if im.src | isSvg %} is-illustration{% endif %}" aria-pressed="{{ 'true' if loop.first else 'false' }}" data-thumb data-src="{{ im.src }}" data-alt="{{ im.alt or title }}">
+        <img src="{{ im.src }}" alt="Show image {{ loop.index }}: {{ im.alt or title }}" loading="lazy" width="120" height="90">
+      </button>
+      {%- endfor %}
+    </div>
+    {%- endif %}
+  </div>
+
+  <div class="buy">
+    {%- if latin %}<p class="latin">{{ latin }}</p>{% endif %}
+    <h1>{{ title }}</h1>
+    {%- if title_si %}<p class="si product-si" lang="si">{{ title_si }}</p>{% endif %}
+    {%- if tagline %}<p class="product-tagline">{{ tagline }}</p>{% endif %}
+    {%- if summary %}<p class="lead">{{ summary }}</p>{% endif %}
+
+    <p class="product-price" data-price-display>{% if first.price > 0 %}{{ first.price | lkr }}{% else %}{{ site.store.price_on_request_label }}{% endif %}</p>
+    {%- if first.compare_at > first.price and first.price > 0 %}<p class="was">Was <s>{{ first.compare_at | lkr }}</s></p>{% endif %}
+
+    <fieldset class="packs">
+      <legend>Pack size</legend>
+      <div class="chips">
+        {%- for v in variants %}
+        {%- set st = v | stockStatus(site) %}
+        <label class="chip{% if st == 'out' %} is-out{% endif %}">
+          <input type="radio" name="variant" value="{{ v.sku }}" data-variant data-pack="{{ v.pack }}" data-price="{{ v.price }}" data-stock="{{ v.stock }}"{% if v.sku == first.sku %} checked{% endif %}>
+          <span>{{ v.pack }}{% if v.channel == 'HORECA only' %} HORECA{% endif %}{% if st == 'out' %}, out of stock{% endif %}</span>
+        </label>
+        {%- endfor %}
+      </div>
+    </fieldset>
+
+    <p class="stock-note" data-stock-note aria-live="polite"></p>
+    <p class="fine" data-price-note{% if first.price > 0 %} hidden{% endif %}>Price for this pack size is confirmed on WhatsApp.</p>
+
+    {%- if site.store.orders_open %}
+    <div class="buy-row">
+      <div class="qty" role="group" aria-label="Quantity">
+        <button type="button" aria-label="Decrease quantity" data-qty-step="-1">{{ ic.icon("minus", 18) }}</button>
+        <input type="number" inputmode="numeric" min="1" value="1" aria-label="Quantity" data-qty>
+        <button type="button" aria-label="Increase quantity" data-qty-step="1">{{ ic.icon("plus", 18) }}</button>
+      </div>
+      <button class="btn btn-cart" type="button" data-add-selected>Add to cart</button>
+    </div>
+    {%- else %}
+    <p class="notice">{{ site.store.closed_message }}</p>
+    {%- endif %}
+    <a class="btn btn-wa btn-block" href="{{ site.contact.whatsapp | waLink(greet ~ 'I would like to order ' ~ title ~ '.') }}" target="_blank" rel="noopener" data-wa-order>{{ ic.icon("whatsapp", 20) }} Order on WhatsApp</a>
+    <p class="fine">Sent to you by post or courier. We confirm stock and delivery on WhatsApp.</p>
+
+    {%- if horeca %}
+    <div class="pro-panel">
+      <h2>Buying for a kitchen or a shop?</h2>
+      <p>Bulk packs and wholesale prices through Ghame Professional.</p>
+      <div class="btn-row">
+        <a class="btn btn-outline" href="/professional/#quote">HORECA or wholesale enquiry</a>
+        <a class="text-link" href="{{ site.contact.whatsapp | waLink(greet ~ 'I would like a sample of ' ~ title ~ ' for my business.') }}" target="_blank" rel="noopener">Request a sample</a>
+      </div>
+    </div>
+    {%- endif %}
+  </div>
+</section>
+
+<section class="section about-spice" aria-labelledby="about-h">
+  <div class="wrap about-grid">
+    <div>
+      <h2 id="about-h">About this spice</h2>
+      <div class="prose">{{ content | safe }}</div>
+    </div>
+    <dl class="spec-list">
+      {%- set labels = { origin: "Natural origin", appearance: "Appearance", aroma: "Aroma and taste", uses: "Suggested uses", ingredients: "Ingredients", storage: "Storage", shelf_life: "Shelf life" } %}
+      {%- for key, label in labels %}{% if specs and specs[key] %}
+      <div><dt>{{ label }}</dt><dd>{{ specs[key] }}</dd></div>
+      {%- endif %}{% endfor %}
+      {%- set certs = site.certifications | liveCerts %}
+      {%- if certs.length %}
+      <div><dt>Certifications</dt><dd>{% for c in certs %}{{ c.name }}{% if not loop.last %}, {% endif %}{% endfor %}</dd></div>
+      {%- endif %}
+    </dl>
+  </div>
+</section>
+
+{%- set usedIn = collections.recipes | recipesUsing(page.fileSlug) %}
+{%- if usedIn.length %}
+<section class="section recipes-teaser" aria-labelledby="cook-h">
+  <div class="wrap">
+    <h2 id="cook-h">Cook with it</h2>
+    <div class="recipe-grid">{% for r in usedIn | limit(3) %}{% include "partials/recipe-card.njk" %}{% endfor %}</div>
+  </div>
+</section>
+{%- endif %}
+
+{%- set rel = collections.shopProducts | findProducts(related) %}
+{%- if not rel.length %}{% set rel = collections.shopProducts | inCategory(category) | except(page.fileSlug) | limit(3) %}{% endif %}
+{%- if rel.length %}
+<section class="section related" aria-labelledby="rel-h">
+  <div class="wrap">
+    <h2 id="rel-h">Often bought together</h2>
+    <div class="product-grid">{% for p in rel | limit(4) %}{% include "partials/product-card.njk" %}{% endfor %}</div>
+  </div>
+</section>
+{%- endif %}
+
+<script type="application/ld+json">{{ page | productSchema(title, summary, images, variants, site, meta) | safe }}</script>

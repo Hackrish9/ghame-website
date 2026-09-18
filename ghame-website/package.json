@@ -1,0 +1,21 @@
+{
+  "name": "ghame-website",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Ghame Spice website: Eleventy static site with Decap CMS management portal, deployed on Cloudflare Pages.",
+  "scripts": {
+    "check": "node scripts/check-content.mjs",
+    "build": "node scripts/check-content.mjs && eleventy",
+    "start": "eleventy --serve --port=8080",
+    "cms:local": "npx decap-server"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "3.1.6",
+    "gray-matter": "^4.0.3",
+    "markdown-it": "^14.1.0"
+  }
+}

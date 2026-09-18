@@ -1,0 +1,46 @@
+---
+layout: layouts/report.njk
+title: Content verification register
+permalink: /admin/register/
+eleventyExcludeFromCollections: true
+---
+{%- set items = verification.items %}
+{%- set statuses = ["Verified current", "Requires update", "Admin verification required", "Content required from Ghame"] %}
+<section class="kpis" aria-label="Register summary">
+  {%- for s in statuses %}
+  <button type="button" class="kpi kpi-{{ loop.index }}" data-filter="{{ s }}" aria-pressed="false">
+    <span class="kpi-n">{{ items | statusCount(s) }}</span><span>{{ s }}</span>
+  </button>
+  {%- endfor %}
+  <div class="kpi kpi-overdue"><span class="kpi-n">{{ items | overdue }}</span><span>Past due date</span></div>
+</section>
+<p class="report-note"><strong>Last management review:</strong> {{ verification.last_review | longDate }}. {{ verification.review_note }}</p>
+<p class="report-note no-print">Select a status above to filter. Edit entries in the portal under Governance.</p>
+<div class="table-scroll">
+<table class="report-table" data-register>
+  <thead><tr><th>Ref</th><th>Area</th><th>Item</th><th>Value found or published</th><th>Source</th><th>Status</th><th>Action</th><th>Owner</th><th>Due</th><th>Reviewed</th><th>Approved by</th></tr></thead>
+  <tbody>
+  {%- for i in items %}
+  <tr data-status="{{ i.status }}">
+    <td>{{ i.ref }}</td><td>{{ i.area }}</td><td><strong>{{ i.item }}</strong>{% if i.notes %}<br><span class="muted">{{ i.notes }}</span>{% endif %}</td>
+    <td>{{ i.value_found }}</td><td>{{ i.source }}</td>
+    <td><span class="status status-{{ i.status | lower | replace(' ', '-') }}">{{ i.status }}</span></td>
+    <td>{{ i.action }}</td><td>{{ i.owner }}</td><td>{{ i.due | isoDate }}</td><td>{{ i.reviewed_on | isoDate }}</td><td>{{ i.approved_by }}</td>
+  </tr>
+  {%- endfor %}
+  </tbody>
+</table>
+</div>
+<script>
+  (function () {
+    var active = "";
+    var rows = document.querySelectorAll("[data-register] tbody tr");
+    document.querySelectorAll("[data-filter]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        active = active === btn.dataset.filter ? "" : btn.dataset.filter;
+        document.querySelectorAll("[data-filter]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.filter === active)); });
+        rows.forEach(function (r) { r.hidden = !!active && r.dataset.status !== active; });
+      });
+    });
+  })();
+</script>

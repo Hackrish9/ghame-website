@@ -1,0 +1,45 @@
+---
+layout: layouts/report.njk
+title: Stock and price report
+permalink: /admin/stock/
+eleventyExcludeFromCollections: true
+---
+<section class="kpis" aria-label="Stock summary">
+  <div class="kpi"><span class="kpi-n">{{ collections.shopProducts.length }}</span><span>Published products</span></div>
+  <div class="kpi"><span class="kpi-n">{{ collections.allProducts.length - collections.shopProducts.length }}</span><span>Hidden products</span></div>
+  <div class="kpi kpi-2"><span class="kpi-n" data-count="low">0</span><span>Low stock pack sizes</span></div>
+  <div class="kpi kpi-4"><span class="kpi-n" data-count="out">0</span><span>Out of stock pack sizes</span></div>
+  <div class="kpi kpi-1"><span class="kpi-n" data-count="value">0</span><span>Stock value at retail (LKR)</span></div>
+</section>
+<p class="report-note">Low stock means {{ site.store.low_stock_threshold }} packs or fewer (set in Settings &gt; Store). Update stock in the portal under Shop: Products after each confirmed order and each production run.</p>
+<div class="table-scroll">
+<table class="report-table" data-stock>
+  <thead><tr><th>Product</th><th>Status</th><th>Pack</th><th>SKU</th><th class="num">Price (LKR)</th><th class="num">Stock</th><th>Level</th><th class="num">Value (LKR)</th></tr></thead>
+  <tbody>
+  {%- for p in collections.allProducts %}
+  {%- for v in p.data.variants %}
+  {%- set st = v | stockStatus(site) %}
+  <tr data-level="{{ st }}" data-value="{{ (v.stock or 0) * (v.price or 0) }}">
+    <td>{% if loop.first %}<strong>{{ p.data.title }}</strong>{% endif %}</td>
+    <td>{% if loop.first %}{% if p.data.published === false %}<span class="status status-content-required-from-ghame">Hidden</span>{% else %}Published{% endif %}{% endif %}</td>
+    <td>{{ v.pack }}</td><td>{{ v.sku }}</td>
+    <td class="num">{% if v.price > 0 %}{{ v.price | lkr | replace("LKR ", "") }}{% else %}On request{% endif %}</td>
+    <td class="num">{{ v.stock }}</td>
+    <td><span class="status level-{{ st }}">{% if st == "out" %}Out of stock{% elif st == "low" %}Low{% else %}OK{% endif %}</span></td>
+    <td class="num">{{ ((v.stock or 0) * (v.price or 0)) | lkr | replace("LKR ", "") }}</td>
+  </tr>
+  {%- endfor %}
+  {%- endfor %}
+  </tbody>
+</table>
+</div>
+<script>
+  (function () {
+    var rows = [].slice.call(document.querySelectorAll("[data-stock] tbody tr"));
+    var count = function (lvl) { return rows.filter(function (r) { return r.dataset.level === lvl; }).length; };
+    var value = rows.reduce(function (s, r) { return s + Number(r.dataset.value || 0); }, 0);
+    document.querySelector('[data-count="low"]').textContent = count("low");
+    document.querySelector('[data-count="out"]').textContent = count("out");
+    document.querySelector('[data-count="value"]').textContent = value.toLocaleString("en-US", { maximumFractionDigits: 0 });
+  })();
+</script>

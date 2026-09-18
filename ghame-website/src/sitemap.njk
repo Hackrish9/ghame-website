@@ -1,0 +1,20 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- set fixed = ["/", "/shop/", "/professional/", "/our-story/", "/recipes/", "/contact/"] %}
+{%- for u in fixed %}
+  <url><loc>{{ u | absUrl(meta.siteUrl) }}</loc></url>
+{%- endfor %}
+{%- for p in collections.shopProducts %}
+  <url><loc>{{ p.url | absUrl(meta.siteUrl) }}</loc><lastmod>{{ p.date | isoDate }}</lastmod></url>
+{%- endfor %}
+{%- for r in collections.recipes %}
+  <url><loc>{{ r.url | absUrl(meta.siteUrl) }}</loc></url>
+{%- endfor %}
+{%- for pg in collections.infoPages %}
+  <url><loc>{{ pg.url | absUrl(meta.siteUrl) }}</loc></url>
+{%- endfor %}
+</urlset>

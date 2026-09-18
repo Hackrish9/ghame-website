@@ -1,0 +1,19 @@
+{#- Verified, unexpired certifications as cards with a certificate preview -#}
+{%- set certs = site.certifications | liveCerts %}
+{%- if certs.length %}
+<ul class="cert-cards">
+  {%- for c in certs %}
+  <li class="cert-card">
+    {%- if c.preview %}<a class="cert-thumb" href="{{ c.certificate or c.preview }}" target="_blank" rel="noopener"><img src="{{ c.preview }}" alt="{{ c.name }} certificate" loading="lazy" width="300" height="424"></a>{% endif %}
+    <div>
+      <h3>{{ c.name }}</h3>
+      {%- if c.standard %}<p class="cert-std">{{ c.standard }}</p>{% endif %}
+      <p class="fine">{% if c.number %}Certificate {{ c.number }}. {% endif %}{% if c.expiry %}Valid to {{ c.expiry | longDate }}, subject to annual surveillance.{% endif %}</p>
+      <p class="cert-links">{% if c.certificate %}<a href="{{ c.certificate }}" target="_blank" rel="noopener">View certificate</a>{% endif %}{% if c.verify_url %}<a href="{{ c.verify_url }}" target="_blank" rel="noopener">Verify with the certification body</a>{% endif %}</p>
+    </div>
+  </li>
+  {%- endfor %}
+</ul>
+{%- set first = certs[0] %}
+{%- if first.body %}<p class="fine cert-body">Certified by {{ first.body }}. Scope: {{ first.scope }}</p>{% endif %}
+{%- endif %}

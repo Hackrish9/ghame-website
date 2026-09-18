@@ -1,0 +1,5 @@
+# Old or short addresses. One rule per line: from  to  status
+/admin    /admin/    301
+/shop     /shop/     301
+/about    /our-story/ 301
+/about/   /our-story/ 301

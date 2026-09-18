@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>{{ title }} | {{ site.brand }}</title>
+<link rel="icon" type="image/png" href="/assets/img/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;600;700&family=Gloock&family=Noto+Sans+Sinhala:wght@400&display=swap">
+<link rel="stylesheet" href="/assets/css/main.css?v={{ meta.version }}">
+</head>
+<body class="report">
+<header class="report-head">
+  <div>
+    <img src="{{ site.logo }}" alt="{{ site.company }}" width="55" height="70">
+    <div>
+      <h1>{{ title }}</h1>
+      <p>{{ site.company }}. Generated {{ meta.builtAt | longDate }} from the live website data.</p>
+    </div>
+  </div>
+  <div class="report-actions no-print">
+    <a class="btn btn-outline" href="/admin/">Open the portal</a>
+    <button class="btn btn-dark" type="button" onclick="window.print()">Print or save as PDF</button>
+  </div>
+</header>
+<main class="report-main">
+{{ content | safe }}
+</main>
+</body>
+</html>

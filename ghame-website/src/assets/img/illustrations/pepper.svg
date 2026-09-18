@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 170" width="200" height="170">
+<path d="M78 16 C 64 -2, 30 8, 30 40 C 50 34, 70 30, 78 16 Z" fill="#2F5E2A"></path>
+<path d="M78 16 C 86 50, 72 90, 84 150" fill="none" stroke="#3D5A2A" stroke-width="2"></path>
+<g fill="#5E8A34"><circle cx="85" cy="32" r="6"></circle><circle cx="72" cy="42" r="6"></circle><circle cx="86" cy="52" r="6"></circle><circle cx="72" cy="62" r="6"></circle><circle cx="86" cy="72" r="6"></circle><circle cx="73" cy="82" r="6"></circle><circle cx="87" cy="92" r="6"></circle><circle cx="75" cy="102" r="6"></circle><circle cx="88" cy="112" r="5.5"></circle><circle cx="77" cy="122" r="5"></circle><circle cx="87" cy="132" r="4.5"></circle></g>
+<g fill="#23201C"><circle cx="138" cy="138" r="8"></circle><circle cx="156" cy="146" r="8"></circle><circle cx="146" cy="126" r="8"></circle><circle cx="170" cy="132" r="8"></circle><circle cx="130" cy="154" r="8"></circle></g>
+<g fill="none" stroke="#4A433A" stroke-width="1"><path d="M133 136 q5 -3 9 1"></path><path d="M151 144 q5 -3 9 1"></path><path d="M141 124 q5 -3 9 1"></path><path d="M165 130 q5 -3 9 1"></path></g>
+</svg>

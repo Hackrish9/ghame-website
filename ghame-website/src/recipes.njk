@@ -1,0 +1,22 @@
+---
+layout: layouts/base.njk
+title: Recipes
+permalink: /recipes/
+seo_title: "Sri Lankan Recipes with Ghame Spices"
+seo_description: "Sri Lankan chicken curry, fish curry with goraka, black pepper chicken and more, cooked with Ghame spices."
+---
+<section class="page-head">
+  <div class="wrap">
+    <h1>Recipes from Sri Lankan kitchens</h1>
+    <p class="lead">Everyday Sri Lankan dishes, and the Ghame spices that go into them.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap">
+    {%- if collections.recipes.length %}
+    <div class="recipe-grid">{% for r in collections.recipes %}{% include "partials/recipe-card.njk" %}{% endfor %}</div>
+    {%- else %}
+    <p class="muted">New recipes are on their way.</p>
+    {%- endif %}
+  </div>
+</section>

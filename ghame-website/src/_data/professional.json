@@ -1,0 +1,170 @@
+{
+  "seo_title": "Ghame Professional: Bulk Spices for Hotels, Restaurants and Caterers",
+  "seo_description": "Bulk Sri Lankan curry powders and spices for HORECA, canteens and food manufacturers. Request a sample and a wholesale quotation from Ghame Spice.",
+  "hero": {
+    "heading": "Consistent flavour for professional kitchens.",
+    "text": "Curry powders, chilli and ground spices in 1 kg, 5 kg and 10 kg HORECA packs, made in our certified Hokandara factory with nothing added. Test a sample in your own kitchen, then order at wholesale prices.",
+    "image": "/assets/uploads/photos/spices-sack-and-jars.jpg",
+    "image_alt": "Bulk spice sack, jars and wooden bowls of spices"
+  },
+  "segments": {
+    "heading": "Built for kitchens that cook at volume",
+    "intro": "Nine kinds of kitchen, one promise: the curry tastes the same on Friday as it did on Monday.",
+    "items": [
+      {
+        "name": "Hotels",
+        "text": "Banquet and à la carte from one consistent spec."
+      },
+      {
+        "name": "Restaurants",
+        "text": "The same curry, every service."
+      },
+      {
+        "name": "Caterers",
+        "text": "Bulk packs for event volumes."
+      },
+      {
+        "name": "Industrial catering",
+        "text": "A predictable cost per meal."
+      },
+      {
+        "name": "Factory canteens",
+        "text": "Reliable supply for daily menus."
+      },
+      {
+        "name": "Hospitals",
+        "text": "No added colours or flavour enhancers."
+      },
+      {
+        "name": "Universities",
+        "text": "Steady volumes through the academic term."
+      },
+      {
+        "name": "Cloud kitchens",
+        "text": "Quick reorders on WhatsApp."
+      },
+      {
+        "name": "Food manufacturers",
+        "text": "Product specifications for your QA team."
+      }
+    ]
+  },
+  "range": {
+    "heading": "Products and pack sizes",
+    "intro": "HORECA pack sizes for every product marked for professional supply. Food manufacturers can also order 20 kg and 25 kg laminated sacks."
+  },
+  "capabilities": {
+    "heading": "What Ghame Professional covers",
+    "intro": "One account for the spices your kitchen uses every day.",
+    "items": [
+      {
+        "title": "Bulk supply",
+        "text": "Wholesale prices on every product in the range.",
+        "confirmed": true
+      },
+      {
+        "title": "Product samples",
+        "text": "Check a sample before you commit to an order.",
+        "confirmed": true
+      },
+      {
+        "title": "Quotations",
+        "text": "Pricing built around your monthly volume.",
+        "confirmed": true
+      },
+      {
+        "title": "Post and courier delivery",
+        "text": "Orders sent to you by post or courier.",
+        "confirmed": true
+      },
+      {
+        "title": "Scheduled delivery",
+        "text": "A standing order on the day your kitchen needs it.",
+        "confirmed": false
+      },
+      {
+        "title": "Specifications",
+        "text": "Laboratory test results for each product, from a recognised, accredited laboratory.",
+        "confirmed": true
+      },
+      {
+        "title": "Custom seasoning development",
+        "text": "A house blend developed to your menu, led by our director of research and development.",
+        "confirmed": true
+      },
+      {
+        "title": "Account support",
+        "text": "One named contact for orders, invoices and questions.",
+        "confirmed": false
+      }
+    ]
+  },
+  "steps": {
+    "heading": "How supply works",
+    "items": [
+      {
+        "title": "Tell us what you cook",
+        "text": "Send the products and monthly volume through the form or WhatsApp."
+      },
+      {
+        "title": "Test a sample",
+        "text": "Cook with it in your own kitchen and judge colour, aroma and heat."
+      },
+      {
+        "title": "Receive a quotation",
+        "text": "Wholesale pricing for your volumes and delivery point."
+      },
+      {
+        "title": "Order and reorder",
+        "text": "Dispatch by post or courier; reorder in one message."
+      }
+    ]
+  },
+  "quote": {
+    "heading": "Request a quotation",
+    "intro": "Tell us what you cook and how much. The form opens WhatsApp with your request written out, ready to send.",
+    "response_note": "",
+    "business_types": [
+      "Hotel",
+      "Restaurant",
+      "Caterer",
+      "Industrial catering",
+      "Factory canteen",
+      "Hospital",
+      "University",
+      "Cloud kitchen",
+      "Food manufacturer",
+      "Importer or distributor",
+      "Retailer",
+      "Other"
+    ],
+    "volumes": [
+      "Under 25 kg a month",
+      "25 to 100 kg a month",
+      "100 to 500 kg a month",
+      "Over 500 kg a month"
+    ]
+  },
+  "export": {
+    "show": true,
+    "heading": "Sri Lankan Flavour. Ready for the World.",
+    "text": "Ghame supplies food manufacturers, distributors and retailers in Sri Lanka and abroad. Our factory's food safety system is certified to ISO 22000:2018, HACCP and GMP, and samples of every product are tested at an accredited laboratory. Tell us your market, products and volumes and we will reply with what we can supply.",
+    "markets": [],
+    "private_label": "Custom labels on sacks, cartons and pouches, and custom blends developed to your specification.",
+    "catalogue": "",
+    "formats": [
+      {
+        "title": "Laminated sacks, 20 kg and 25 kg",
+        "text": "Odourless, polyethylene-lined. For food manufacturers and importers."
+      },
+      {
+        "title": "Corrugated cartons, 37 x 42 cm",
+        "text": "Polyethylene-lined. For restaurants, caterers and food businesses."
+      },
+      {
+        "title": "Retail and HORECA packs",
+        "text": "100 g, 250 g, 500 g and 1 kg retail packs; 1 kg, 5 kg and 10 kg HORECA packs."
+      }
+    ]
+  }
+}

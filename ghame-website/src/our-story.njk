@@ -1,0 +1,70 @@
+---
+layout: layouts/base.njk
+title: Our story
+permalink: /our-story/
+eleventyComputed:
+  seo_title: "{{ about.seo_title }}"
+  seo_description: "{{ about.seo_description }}"
+---
+{% import "partials/icons.njk" as ic %}
+{%- set a = about %}
+<section class="page-head story-head">
+  <div class="wrap story-grid">
+    <div>
+      <h1>{{ a.heading }}</h1>
+      <p class="lead">{{ a.lead }}</p>
+      {%- if a.body %}<div class="prose">{{ a.body | md | safe }}</div>{% endif %}
+    </div>
+    {%- if a.image %}
+    <img class="story-img" src="{{ a.image }}" alt="{{ a.image_alt }}">
+    {%- else %}
+    <img class="story-img is-illustration" src="/assets/img/illustrations/pepper.svg" alt="" width="200" height="170">
+    {%- endif %}
+  </div>
+</section>
+
+<section class="facts" aria-label="Company facts">
+  <dl class="wrap fact-list">
+    {%- for f in a.facts %}{% if f.value %}<div><dt>{{ f.label }}</dt><dd>{{ f.value }}</dd></div>{% endif %}{% endfor %}
+  </dl>
+</section>
+
+<section class="section" aria-labelledby="process-h">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="process-h">{{ a.process.heading }}</h2>
+      <p>{{ a.process.intro }}</p>
+    </div>
+    <ol class="steps steps-{{ 3 if a.process.steps.length > 4 else 4 }}">
+      {%- for st in a.process.steps %}<li><span class="step-n">{{ loop.index }}</span><h3>{{ st.title }}</h3><p>{{ st.text }}</p></li>{% endfor %}
+    </ol>
+    {%- if a.process.image %}<img class="journey-media" src="{{ a.process.image }}" alt="{{ a.process.image_alt }}" loading="lazy">{% endif %}
+  </div>
+</section>
+
+{%- if a.vision or a.mission %}
+<section class="section vm" aria-label="Vision and mission">
+  <div class="wrap vm-grid">
+    {%- if a.vision %}<div><h2>Vision</h2><p class="lead">{{ a.vision }}</p></div>{% endif %}
+    {%- if a.mission %}<div><h2>Mission</h2><p class="lead">{{ a.mission }}</p></div>{% endif %}
+  </div>
+</section>
+{%- endif %}
+
+<section class="section quality" aria-labelledby="q-h">
+  <div class="wrap quality-grid">
+    <div>
+      <h2 id="q-h">{{ a.quality.heading }}</h2>
+      <p class="lead">{{ a.quality.text }}</p>
+      <a class="btn btn-wa" href="{{ site.contact.whatsapp | waLink('Hello ' ~ site.brand ~ ', the batch code on my pack is: ') }}" target="_blank" rel="noopener">{{ ic.icon("whatsapp", 20) }} Ask about your batch code</a>
+    </div>
+    <div>
+      <ul class="tick-list">{% for c in a.quality.claims %}<li>{{ ic.icon("check", 22) }}<span>{{ c.text }}</span></li>{% endfor %}</ul>
+
+    </div>
+  </div>
+  <div class="wrap" id="certifications">
+    <h2 class="cert-h">Certifications</h2>
+    {% include "partials/cert-cards.njk" %}
+  </div>
+</section>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{%- if page.url == "/" %}{% set fullTitle = site.seo.home_title %}{% else %}{% set fullTitle = (seo_title or title) ~ " | " ~ site.brand %}{% endif %}
+{%- set metaDesc = (seo_description or summary or site.seo.description) | striptags | truncate(170) %}
+{%- set canonical = page.url | absUrl(meta.siteUrl) %}
+<title>{{ fullTitle }}</title>
+<meta name="description" content="{{ metaDesc }}">
+<link rel="canonical" href="{{ canonical }}">
+<meta property="og:type" content="{{ ogType or 'website' }}">
+<meta property="og:site_name" content="{{ site.company }}">
+<meta property="og:title" content="{{ fullTitle }}">
+<meta property="og:description" content="{{ metaDesc }}">
+<meta property="og:url" content="{{ canonical }}">
+<meta property="og:image" content="{{ (ogImage or site.og_image) | absUrl(meta.siteUrl) }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#183C2C">
+{%- if noindex %}
+<meta name="robots" content="noindex, nofollow">
+{%- endif %}
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Gloock&family=Noto+Sans+Sinhala:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/assets/css/main.css?v={{ meta.version }}">
+{%- set waNumber = site.contact.whatsapp | digits %}
+{%- set clientConfig = {
+  "whatsapp": waNumber,
+  "brand": site.brand,
+  "email": site.contact.email,
+  "b2bEmail": site.contact.b2b_email or site.contact.email,
+  "ordersOpen": site.store.orders_open,
+  "closedMessage": site.store.closed_message,
+  "lowStock": site.store.low_stock_threshold,
+  "showStock": site.store.show_stock_count,
+  "prefix": site.store.order_prefix,
+  "priceOnRequest": site.store.price_on_request_label,
+  "openDays": site.contact.open_days,
+  "openTime": site.contact.open_time,
+  "closeTime": site.contact.close_time,
+  "hoursText": site.contact.hours_text
+} %}
+<script>window.GHAME = {{ clientConfig | jsonScript | safe }};</script>
+<script src="/assets/js/site.js?v={{ meta.version }}" defer></script>
+</head>
+<body class="{{ bodyClass or 'page' }}">
+<a class="skip-link" href="#main">Skip to content</a>
+{%- if site.announcement.enabled and site.announcement.text %}
+<div class="announce">
+  <div class="wrap">{% if site.announcement.link %}<a href="{{ site.announcement.link }}">{{ site.announcement.text }}</a>{% else %}{{ site.announcement.text }}{% endif %}</div>
+</div>
+{%- endif %}
+{% include "partials/header.njk" %}
+<main id="main">
+{{ content | safe }}
+</main>
+{% include "partials/footer.njk" %}
+{% include "partials/whatsapp.njk" %}
+<div class="toast" role="status" aria-live="polite" data-toast></div>
+</body>
+</html>

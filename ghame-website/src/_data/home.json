@@ -1,0 +1,302 @@
+{
+  "hero": {
+    "kicker": "Ghame Spice (Pvt) Ltd, Sri Lanka",
+    "headline": "Authentic Sri Lankan Spices.",
+    "headline_2": "Crafted with Heritage. Inspired by Nature.",
+    "intro": "From Sri Lanka's natural landscapes to homes, professional kitchens and international markets, Ghame brings together authentic spices, careful processing and modern quality standards.",
+    "image": "/assets/uploads/photos/spices-sack-and-jars.jpg",
+    "image_alt": "Whole and ground spices in jars and wooden bowls in front of a bulk spice sack and a carton",
+    "video": "",
+    "buttons": [
+      {
+        "label": "Shop Ghame",
+        "url": "/shop/",
+        "style": "primary"
+      },
+      {
+        "label": "Ghame Professional",
+        "url": "/professional/",
+        "style": "secondary"
+      },
+      {
+        "label": "Export enquiry",
+        "url": "/professional/#export",
+        "style": "text"
+      }
+    ]
+  },
+  "trust": {
+    "show": true,
+    "items": [
+      {
+        "label": "Sri Lankan brand",
+        "icon": "leaf"
+      },
+      {
+        "label": "ISO 22000, HACCP and GMP certified",
+        "icon": "shield"
+      },
+      {
+        "label": "Lab-tested samples",
+        "icon": "check"
+      },
+      {
+        "label": "HORECA packs to 10 kg",
+        "icon": "chef"
+      },
+      {
+        "label": "Export enquiries",
+        "icon": "globe"
+      }
+    ]
+  },
+  "essence": {
+    "show": true,
+    "heading": "The Essence of Sri Lanka",
+    "intro": "Six spices, drawn as they really grow, from vine or tree to the dried spice in your kitchen.",
+    "spices": [
+      {
+        "name": "Black Pepper",
+        "name_si": "ගම්මිරිස්",
+        "latin": "Piper nigrum",
+        "tagline": "Deep. Bold. Aromatic.",
+        "part_used": "Part used: the unripe fruit, sun-dried until black and wrinkled.",
+        "image": "/assets/img/illustrations/pepper.svg",
+        "image_alt": "Pepper vine spike with green berries and dried black peppercorns",
+        "product": "black-pepper-powder",
+        "in_range": true
+      },
+      {
+        "name": "Cardamom",
+        "name_si": "එනසාල්",
+        "latin": "Elettaria cardamomum",
+        "tagline": "Fragrant. Complex. Distinctive.",
+        "part_used": "Part used: the seed pod, picked green and dried to keep its colour.",
+        "image": "/assets/img/illustrations/cardamom.svg",
+        "image_alt": "Three green cardamom pods and loose seeds",
+        "product": "cardamom",
+        "in_range": true
+      },
+      {
+        "name": "Cloves",
+        "name_si": "කරාබුනැටි",
+        "latin": "Syzygium aromaticum",
+        "tagline": "Warm. Intense. Naturally aromatic.",
+        "part_used": "Part used: the unopened flower bud, picked pink and dried to brown.",
+        "image": "/assets/img/illustrations/cloves.svg",
+        "image_alt": "Dried clove flower buds and one fresh pink bud",
+        "product": "cloves",
+        "in_range": true
+      },
+      {
+        "name": "Nutmeg",
+        "name_si": "සාදික්කා",
+        "latin": "Myristica fragrans",
+        "tagline": "Rich. Warm. Sophisticated.",
+        "part_used": "Part used: the seed inside the fruit, dried in its shell.",
+        "image": "/assets/img/illustrations/nutmeg.svg",
+        "image_alt": "Two whole dried nutmegs with their veined surface",
+        "product": "nutmeg",
+        "in_range": true
+      },
+      {
+        "name": "Mace",
+        "name_si": "වසාවාසි",
+        "latin": "Myristica fragrans",
+        "tagline": "Delicate. Fragrant. Remarkably distinctive.",
+        "part_used": "Part used: the red lace (aril) that wraps the nutmeg seed.",
+        "image": "/assets/img/illustrations/mace.svg",
+        "image_alt": "A nutmeg seed wrapped in red mace",
+        "product": "mace",
+        "in_range": true
+      },
+      {
+        "name": "Vanilla",
+        "name_si": "වැනිලා",
+        "latin": "Vanilla planifolia",
+        "tagline": "Natural. Luxurious. Aromatic.",
+        "part_used": "Part used: the orchid's pod, picked green and cured for months to dark brown.",
+        "image": "/assets/img/illustrations/vanilla.svg",
+        "image_alt": "Cured dark vanilla beans beside one green pod",
+        "product": "vanilla",
+        "in_range": true
+      }
+    ]
+  },
+  "nutmeg_mace": {
+    "show": true,
+    "latin": "Myristica fragrans",
+    "heading": "Two Extraordinary Spices. One Remarkable Fruit.",
+    "body": "When a ripe nutmeg fruit splits on the tree, it shows a glossy dark seed wrapped in crimson lace. The lace is mace. The seed is nutmeg. They are separated by hand and dried apart, so one fruit gives the kitchen two quite different spices.",
+    "image": "/assets/img/illustrations/nutmeg-fruit.svg",
+    "image_alt": "An opened nutmeg fruit showing the dark seed wrapped in red mace",
+    "video": "",
+    "stages": [
+      {
+        "title": "Fresh.",
+        "text": "Crimson and supple, just lifted from the seed.",
+        "image": "/assets/img/illustrations/mace-fresh.svg"
+      },
+      {
+        "title": "Drying.",
+        "text": "Laid out flat, it shifts from red towards orange.",
+        "image": "/assets/img/illustrations/mace-drying.svg"
+      },
+      {
+        "title": "Dried.",
+        "text": "Amber-orange, brittle and intensely fragrant.",
+        "image": "/assets/img/illustrations/mace-dried.svg"
+      }
+    ]
+  },
+  "senses": {
+    "show": true,
+    "heading": "Four senses of Ghame",
+    "intro": "Heritage, modern life, connection and nature. Every pack carries all four.",
+    "items": [
+      {
+        "title": "Sense of Heritage",
+        "subtitle": "Centuries of Sri Lankan spice knowledge.",
+        "text": "Cinnamon and pepper drew traders to this island for centuries. That knowledge still guides how we clean, dry and grind.",
+        "image": "",
+        "image_alt": ""
+      },
+      {
+        "title": "Sense of Modern Urban",
+        "subtitle": "Authentic flavour designed for today's world.",
+        "text": "From a Colombo apartment kitchen to a hotel pass, the same honest spice, ready when the pan is hot.",
+        "image": "",
+        "image_alt": ""
+      },
+      {
+        "title": "Sense of Spiritual",
+        "subtitle": "Food that connects people, place and purpose.",
+        "text": "Food connects people, places and generations. We make spices for the meals that bring everyone to the table.",
+        "image": "",
+        "image_alt": ""
+      },
+      {
+        "title": "Sense of Nature",
+        "subtitle": "The journey begins with the land.",
+        "text": "Rain, soil, sun and time. Then nothing added: no colours, no flavour enhancers, no fragrances.",
+        "image": "",
+        "image_alt": ""
+      }
+    ]
+  },
+  "journey": {
+    "show": true,
+    "heading": "From Source to Kitchen",
+    "intro": "Seven steps between the plant and your pan. Each one is a point where we check, not just move.",
+    "steps": [
+      {
+        "title": "Source",
+        "text": "Carefully selected raw materials."
+      },
+      {
+        "title": "Harvest",
+        "text": "Respect for ingredient maturity and quality."
+      },
+      {
+        "title": "Select",
+        "text": "Sorting and inspection."
+      },
+      {
+        "title": "Process",
+        "text": "Controlled preparation."
+      },
+      {
+        "title": "Test",
+        "text": "Quality assurance."
+      },
+      {
+        "title": "Pack",
+        "text": "Freshness protection."
+      },
+      {
+        "title": "Deliver",
+        "text": "Homes, HORECA and business customers."
+      }
+    ],
+    "note": "At our Hokandara factory every raw material is sorted, cleaned, washed and dried before it is ground, and samples of every product are tested at a recognised, accredited laboratory.",
+    "image": "",
+    "image_alt": "",
+    "video": ""
+  },
+  "shop": {
+    "show": true,
+    "heading": "Shop the Ghame range",
+    "intro": "Curry powders and single spices in 100 g, 250 g, 500 g and 1 kg packs, ground and packed in Sri Lanka.",
+    "count": 4,
+    "button": "View all products"
+  },
+  "professional": {
+    "show": true,
+    "heading": "Consistent flavour for professional kitchens.",
+    "text": "For hotels, restaurants, caterers, factory canteens, hospitals, universities, cloud kitchens and food manufacturers. Ask for a sample and check it in your own kitchen before you order.",
+    "note": "HORECA packs of 1 kg, 5 kg and 10 kg. Wholesale prices on request.",
+    "image": "/assets/uploads/photos/spices-on-wooden-spoons-wide.jpg",
+    "image_alt": "Ground and whole spices on wooden spoons"
+  },
+  "export": {
+    "show": true,
+    "heading": "Sri Lankan Flavour. Ready for the World.",
+    "text": "Bulk spices in 20 kg and 25 kg laminated sacks, custom labels and blends developed to your specification, from an ISO 22000, HACCP and GMP certified factory in Sri Lanka.",
+    "image": "",
+    "image_alt": ""
+  },
+  "quality": {
+    "show": true,
+    "heading": "Quality You Can Trace.",
+    "text": "Every Ghame spice is made under a food safety system certified to ISO 22000:2018, HACCP and GMP, and samples of every product are tested at a recognised, accredited laboratory. Send us the batch code on your pack and we will tell you where it came from.",
+    "steps": [
+      {
+        "title": "Raw material",
+        "text": "Received, inspected and logged on arrival."
+      },
+      {
+        "title": "Supplier",
+        "text": "Each lot is tied to the grower or collector who supplied it."
+      },
+      {
+        "title": "Batch",
+        "text": "A batch code follows the lot through the factory."
+      },
+      {
+        "title": "Processing",
+        "text": "Cleaning, washing, drying and grinding are recorded against it."
+      },
+      {
+        "title": "Finished product",
+        "text": "Checked, weighed, sealed and coded."
+      },
+      {
+        "title": "Customer",
+        "text": "Your pack, your kitchen, one code to trace it all back."
+      }
+    ]
+  },
+  "recipes": {
+    "show": true,
+    "heading": "Recipes from Sri Lankan kitchens",
+    "count": 3
+  },
+  "story": {
+    "show": true,
+    "heading": "Born in Sri Lanka.",
+    "text": "Ghame Spice was incorporated in 2024 to add value to Sri Lanka's spices at home, so the flavour, colour and aroma in every pack match the quality of the crop in the field.",
+    "points": [
+      {
+        "text": "Made at our own factory in Hokandara, Malabe."
+      },
+      {
+        "text": "No added colours, flavour enhancers or fragrances."
+      },
+      {
+        "text": "Samples of every product tested at an accredited laboratory."
+      }
+    ],
+    "image": "/assets/uploads/photos/spice-bowls-on-table.jpg",
+    "image_alt": "Wooden bowls of coriander seed, chilli flakes, black pepper and ground spices on a table"
+  }
+}

@@ -1,0 +1,37 @@
+---
+layout: layouts/base.njk
+title: Shop
+permalink: /shop/
+seo_title: "Shop Sri Lankan Spices and Curry Powders"
+seo_description: "Buy Ghame curry powders, chilli, turmeric, pepper and whole spices. Add to cart and send your order on WhatsApp."
+---
+<section class="page-head">
+  <div class="wrap">
+    <h1>Shop the Ghame range</h1>
+    <p class="lead">Add what you need to your cart, then send the order to us on WhatsApp. We confirm stock, delivery and the final total before anything is dispatched.</p>
+  </div>
+</section>
+<section class="section shop" aria-label="Products">
+  <div class="wrap">
+    <div class="shop-tools" data-shop>
+      <label class="search" for="search">
+        <span class="visually-hidden">Search products</span>
+        <input id="search" type="search" placeholder="Search spices, for example chilli" autocomplete="off" data-shop-search>
+      </label>
+      <div class="chips" role="group" aria-label="Filter by category">
+        <button class="chip-btn" type="button" aria-pressed="true" data-cat="">All</button>
+        {%- for c in categories.items %}{% if collections.shopProducts | inCategory(c.id) | length %}
+        <button class="chip-btn" type="button" aria-pressed="false" data-cat="{{ c.id }}">{{ c.name }}</button>
+        {%- endif %}{% endfor %}
+      </div>
+    </div>
+    {%- if not site.store.orders_open %}<p class="notice">{{ site.store.closed_message }}</p>{% endif %}
+    <div class="product-grid" data-shop-grid>
+      {%- for p in collections.shopProducts %}{% include "partials/product-card.njk" %}{% endfor %}
+    </div>
+    <div class="empty" data-shop-empty hidden>
+      <p>No products match your search.</p>
+      <button class="btn btn-outline" type="button" data-shop-clear>Show all products</button>
+    </div>
+  </div>
+</section>
