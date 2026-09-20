@@ -16,7 +16,7 @@ ogType: product
 
 <section class="product wrap" data-product data-id="{{ page.fileSlug }}" data-title="{{ title }}">
   <div class="gallery" data-gallery>
-    <div class="gallery-main{% if images[0].src | isSvg %} is-illustration{% endif %}" data-gallery-main>
+    <div class="gallery-main{% if images[0].src | isSvg %} is-illustration{% endif %}{% if images[0].fit == "contain" %} is-contain{% endif %}" data-gallery-main>
       <img src="{{ images[0].src }}" alt="{{ images[0].alt or title }}" width="800" height="600" fetchpriority="high">
     </div>
     {%- if images.length > 1 %}

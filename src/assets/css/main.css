@@ -237,6 +237,8 @@ p { margin: 0; }
 .gallery { display: grid; gap: 12px; position: sticky; top: 110px; }
 .gallery-main { aspect-ratio: 4 / 3; background: var(--sand); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
 .gallery-main img { width: 100%; height: 100%; object-fit: cover; }
+.gallery-main.is-contain { background: #fff; }
+.gallery-main.is-contain img { object-fit: contain; object-position: center; padding: clamp(6px, 1.5vw, 16px); }
 .gallery-thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 10px; }
 .thumb { padding: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--sand); aspect-ratio: 4 / 3; }
 .thumb img { width: 100%; height: 100%; object-fit: cover; }
