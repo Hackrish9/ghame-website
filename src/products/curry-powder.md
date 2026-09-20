@@ -10,8 +10,9 @@ latin: ''
 tagline: Bright, fresh and aromatic.
 summary: Unroasted curry powder for vegetable, lentil and seafood curries where a lighter colour is wanted.
 images:
-- src: /assets/img/illustrations/curry-powder.svg
-  alt: A bowl of curry powder with curry leaves
+- src: /assets/uploads/products/curry-powder.jpeg
+  alt: Ghame Curry Powder product label and curry powder
+  fit: contain
 variants:
 - pack: 100 g
   sku: GS-CUP-100G

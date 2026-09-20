@@ -10,8 +10,9 @@ latin: Piper nigrum
 tagline: Deep. Bold. Aromatic.
 summary: Dried black peppercorns, cleaned, washed and dried again before grinding. Nothing added.
 images:
-- src: /assets/img/illustrations/pepper.svg
-  alt: Pepper vine spike with green berries and dried black peppercorns
+- src: /assets/uploads/products/black-pepper-powder.jpeg
+  alt: Ghame Black Pepper Powder product label and black pepper powder
+  fit: contain
 variants:
 - pack: 100 g
   sku: GS-BPP-100G

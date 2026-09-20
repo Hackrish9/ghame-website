@@ -10,8 +10,9 @@ latin: Capsicum annuum
 tagline: Clean heat, full colour.
 summary: Dried red chillies, cleaned, de-stemmed, washed and dried again before grinding.
 images:
-- src: /assets/img/illustrations/chilli.svg
-  alt: Two red chillies and chilli flakes
+- src: /assets/uploads/products/chilli-powder.jpeg
+  alt: Ghame Chilli Powder product label and chilli powder
+  fit: contain
 variants:
 - pack: 100 g
   sku: GS-CHP-100G

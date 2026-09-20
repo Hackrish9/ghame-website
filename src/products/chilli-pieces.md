@@ -10,8 +10,9 @@ latin: Capsicum annuum
 tagline: Crushed for texture and heat.
 summary: Coarsely crushed dried chillies, seeds and all.
 images:
-- src: /assets/img/illustrations/chilli.svg
-  alt: Two red chillies and crushed chilli pieces
+- src: /assets/uploads/products/chilli-pieces.jpeg
+  alt: Ghame Chilli Pieces product label and chilli pieces
+  fit: contain
 variants:
 - pack: 100 g
   sku: GS-CHF-100G

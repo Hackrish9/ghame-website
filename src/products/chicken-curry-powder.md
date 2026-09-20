@@ -10,8 +10,9 @@ latin: ''
 tagline: One spoon for a Sunday chicken curry.
 summary: A ready blend for chicken and meat curries.
 images:
-- src: /assets/img/illustrations/curry-powder.svg
-  alt: A bowl of chicken curry powder with curry leaves
+- src: /assets/uploads/products/chicken-curry-powder.jpeg
+  alt: Ghame Chicken Curry Powder product label and chicken curry powder
+  fit: contain
 variants:
 - pack: 100 g
   sku: GS-CCP-100G

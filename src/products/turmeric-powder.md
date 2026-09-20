@@ -10,8 +10,9 @@ latin: Curcuma longa
 tagline: Golden, earthy, everyday.
 summary: Ground turmeric root for colour and earthy warmth.
 images:
-- src: /assets/img/illustrations/turmeric.svg
-  alt: Turmeric roots and a pile of turmeric powder
+- src: /assets/uploads/products/turmeric-powder.jpeg
+  alt: Ghame Turmeric Powder product label and turmeric powder
+  fit: contain
 variants:
 - pack: 100 g
   sku: GS-TUR-100G
