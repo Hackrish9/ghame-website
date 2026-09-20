@@ -10,8 +10,8 @@ latin: ''
 tagline: Dark, toasty and deeply savoury.
 summary: Spices roasted until dark and fragrant, then ground. The base of a Sri Lankan meat or chicken curry.
 images:
-- src: /assets/img/illustrations/curry-powder.svg
-  alt: A bowl of dark roasted curry powder with curry leaves
+- src: /assets/uploads/products/roasted-curry-powder.png
+  alt: Ghame Roasted Curry Powder product label and roasted curry powder
 variants:
 - pack: 100 g
   sku: GS-RCP-100G
