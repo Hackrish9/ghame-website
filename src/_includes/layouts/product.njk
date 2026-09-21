@@ -17,13 +17,13 @@ ogType: product
 <section class="product wrap" data-product data-id="{{ page.fileSlug }}" data-title="{{ title }}">
   <div class="gallery" data-gallery>
     <div class="gallery-main{% if images[0].src | isSvg %} is-illustration{% endif %}{% if images[0].fit == "contain" %} is-contain{% endif %}" data-gallery-main>
-      <img src="{{ images[0].src }}" alt="{{ images[0].alt or title }}" width="800" height="600" fetchpriority="high">
+      <img src="{{ images[0].src }}" alt="{{ images[0].alt or title }}" fetchpriority="high">
     </div>
     {%- if images.length > 1 %}
     <div class="gallery-thumbs" role="group" aria-label="Product images">
       {%- for im in images %}
       <button type="button" class="thumb{% if im.src | isSvg %} is-illustration{% endif %}" aria-pressed="{{ 'true' if loop.first else 'false' }}" data-thumb data-src="{{ im.src }}" data-alt="{{ im.alt or title }}">
-        <img src="{{ im.src }}" alt="Show image {{ loop.index }}: {{ im.alt or title }}" loading="lazy" width="120" height="90">
+        <img src="{{ im.src }}" alt="Show image {{ loop.index }}: {{ im.alt or title }}" loading="lazy">
       </button>
       {%- endfor %}
     </div>

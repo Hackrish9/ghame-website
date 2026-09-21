@@ -12,6 +12,7 @@ summary: Green cardamom pods, picked and dried to keep their colour.
 images:
 - src: /assets/uploads/products/cardamom.webp
   alt: Green cardamom pods spilling from a glass jar
+  fit: contain
 variants:
 - pack: 100 g
   sku: GS-CAR-100G

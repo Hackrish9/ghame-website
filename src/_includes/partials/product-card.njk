@@ -5,7 +5,7 @@
 {%- set single = p.data.variants.length == 1 %}
 <article class="product-card" data-product-card data-category="{{ p.data.category }}" data-name="{{ (p.data.title ~ ' ' ~ (p.data.title_si or '') ~ ' ' ~ (p.data.summary or '')) | lower }}">
   <a class="pc-media{% if img.src | isSvg %} is-illustration{% endif %}" href="{{ p.url }}" tabindex="-1" aria-hidden="true">
-    <img src="{{ img.src }}" alt="" loading="lazy" width="400" height="300">
+    <img src="{{ img.src }}" alt="" loading="lazy">
   </a>
   <div class="pc-body">
     <h3 class="pc-title"><a href="{{ p.url }}">{{ p.data.title }}</a></h3>

@@ -2,7 +2,7 @@
 title: Cinnamon
 title_si: කුරුඳු
 published: true
-featured: false
+featured: true
 horeca: true
 category: whole-spices
 order: 100
@@ -12,6 +12,7 @@ summary: Sri Lankan cinnamon, the thin inner bark rolled into quills.
 images:
 - src: /assets/img/illustrations/cinnamon.svg
   alt: Three rolled cinnamon quills
+  fit: contain
 variants:
 - pack: 100 g
   sku: GS-CIN-100G

@@ -12,6 +12,7 @@ summary: Vanilla orchid pods, picked green and cured for months until dark and f
 images:
 - src: /assets/uploads/products/vanilla.webp
   alt: Cured vanilla beans on a rustic wooden surface
+  fit: contain
 variants:
 - pack: 100 g
   sku: GS-VAN-100G
