@@ -30,14 +30,6 @@ eleventyExcludeFromCollections: true
     var repo = {{ meta.cmsRepo | jsonScript | safe }};
     var branch = {{ meta.cmsBranch | jsonScript | safe }};
     var local = /^(localhost|127\.0\.0\.1)$/.test(window.location.hostname);
-    if (!repo && !local) {
-      document.body.innerHTML =
-        '<div class="ghame-setup"><h1>Portal not connected yet</h1>' +
-        '<p>Add the <code>CMS_REPO</code> environment variable in Cloudflare Pages ' +
-        '(for example <code>your-github-name/ghame-website</code>), plus <code>GITHUB_CLIENT_ID</code> and ' +
-        '<code>GITHUB_CLIENT_SECRET</code>, then redeploy. See README.md, step 4.</p></div>';
-      return;
-    }
     // Sign-in runs through this site's own /api/auth function (Cloudflare Pages
     // Functions), on whichever address the portal is opened.
     var base = window.location.origin;

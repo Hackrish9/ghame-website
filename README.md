@@ -44,7 +44,7 @@ Cloudflare > your Pages project > Settings > **Variables and Secrets** (Producti
 |---|---|
 | `GITHUB_CLIENT_ID` | from step 3 |
 | `GITHUB_CLIENT_SECRET` | from step 3 (mark as Secret) |
-| `CMS_REPO` | `your-github-name/ghame-website` |
+| `CMS_REPO` | `Hackrish9/ghame-website` |
 | `CMS_BRANCH` | `main` |
 | `SITE_URL` | `https://<project>.pages.dev` now, `https://ghame.lk` after step 6 |
 | `NODE_VERSION` | `22` |
@@ -101,7 +101,7 @@ scripts/            content check run before every build
 ## Troubleshooting
 | Symptom | Fix |
 |---|---|
-| Portal says "not connected yet" | `CMS_REPO` missing; add it and redeploy |
+| Portal says "not connected yet" | Update to the latest site build. This repository now defaults to `Hackrish9/ghame-website`; if overridden, verify `CMS_REPO` and redeploy. |
 | Sign-in popup shows a redirect error | OAuth App callback URL does not match the address the portal was opened on |
 | A change does not appear | Check the Cloudflare build log for the content check message |
 | Old CSS after an update | Hard refresh; files are versioned on every build |
