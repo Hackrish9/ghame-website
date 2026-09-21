@@ -207,8 +207,8 @@ p { margin: 0; }
 
 .product-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; margin-bottom: 32px; }
 .product-card { display: flex; flex-direction: column; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
-.pc-media { display: block; aspect-ratio: 4 / 3; background: var(--sand); }
-.pc-media img { width: 100%; height: 100%; object-fit: cover; }
+.pc-media { display: block; aspect-ratio: 4 / 3; background: var(--sand); overflow: hidden; }
+.pc-media img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .is-illustration { background: var(--paper); }
 .pc-media.is-illustration img, .gallery-main.is-illustration img, .thumb.is-illustration img, .rc-media.is-illustration img, img.is-illustration { object-fit: contain; padding: 10%; }
 .pc-body { flex: 1; display: flex; flex-direction: column; gap: 4px; padding: 18px 20px 20px; border-top: 1px solid var(--line); }

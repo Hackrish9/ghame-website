@@ -10,8 +10,8 @@ latin: Syzygium aromaticum
 tagline: Warm. Intense. Naturally aromatic.
 summary: Unopened clove flower buds, picked pink and dried to a deep brown.
 images:
-- src: /assets/img/illustrations/cloves.svg
-  alt: Dried clove buds and one fresh pink bud
+- src: /assets/uploads/products/cloves.webp
+  alt: Whole dried cloves in a wooden bowl
 variants:
 - pack: 100 g
   sku: GS-CLV-100G

@@ -10,8 +10,8 @@ latin: Myristica fragrans
 tagline: Delicate. Fragrant. Remarkably distinctive.
 summary: The red lace that wraps the nutmeg seed, separated by hand and dried to amber.
 images:
-- src: /assets/img/illustrations/mace.svg
-  alt: A nutmeg seed wrapped in red mace
+- src: /assets/uploads/products/mace.webp
+  alt: Nutmeg seeds surrounded by red-orange mace
 variants:
 - pack: 100 g
   sku: GS-MAC-100G

@@ -10,8 +10,8 @@ latin: Vanilla planifolia
 tagline: Natural. Luxurious. Aromatic.
 summary: Vanilla orchid pods, picked green and cured for months until dark and fragrant.
 images:
-- src: /assets/img/illustrations/vanilla.svg
-  alt: Cured dark vanilla beans beside one green pod
+- src: /assets/uploads/products/vanilla.webp
+  alt: Cured vanilla beans on a rustic wooden surface
 variants:
 - pack: 100 g
   sku: GS-VAN-100G

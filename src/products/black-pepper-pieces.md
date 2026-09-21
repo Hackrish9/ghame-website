@@ -10,8 +10,8 @@ latin: Piper nigrum
 tagline: Cracked for crunch and heat.
 summary: Coarsely cracked black pepper.
 images:
-- src: /assets/img/illustrations/pepper.svg
-  alt: Pepper vine spike with green berries and dried black peppercorns
+- src: /assets/uploads/products/black-pepper.webp
+  alt: Black peppercorns with fresh pepper berries and leaves
 variants:
 - pack: 100 g
   sku: GS-BPC-100G

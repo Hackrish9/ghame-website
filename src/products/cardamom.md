@@ -10,8 +10,8 @@ latin: Elettaria cardamomum
 tagline: Fragrant. Complex. Distinctive.
 summary: Green cardamom pods, picked and dried to keep their colour.
 images:
-- src: /assets/img/illustrations/cardamom.svg
-  alt: Three green cardamom pods and loose seeds
+- src: /assets/uploads/products/cardamom.webp
+  alt: Green cardamom pods spilling from a glass jar
 variants:
 - pack: 100 g
   sku: GS-CAR-100G

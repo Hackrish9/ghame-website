@@ -10,8 +10,8 @@ latin: Myristica fragrans
 tagline: Rich. Warm. Sophisticated.
 summary: Whole nutmeg, the seed of the nutmeg fruit, dried in its shell.
 images:
-- src: /assets/img/illustrations/nutmeg.svg
-  alt: Two whole dried nutmegs
+- src: /assets/uploads/products/nutmeg.webp
+  alt: Whole nutmeg seeds in a wooden bowl
 variants:
 - pack: 100 g
   sku: GS-NUT-100G
