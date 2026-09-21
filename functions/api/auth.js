@@ -7,7 +7,7 @@ export async function onRequestGet({ request, env }) {
 
   if (!env.GITHUB_CLIENT_ID || !env.GITHUB_CLIENT_SECRET) {
     return new Response(
-      "Sign-in is not configured. Add GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET in Cloudflare Pages > Settings > Variables and Secrets, then redeploy.",
+      "Sign-in is not configured. Add GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET in Cloudflare Workers > ghame-website > Settings > Variables and Secrets, then deploy the changes.",
       { status: 500, headers: { "Content-Type": "text/plain; charset=utf-8" } },
     );
   }
