@@ -11,8 +11,7 @@ tagline: Fragrant. Complex. Distinctive.
 summary: Green cardamom pods, picked and dried to keep their colour.
 images:
   - src: /assets/uploads/cardamom.jpg
-    alt: Green cardamom pods spilling from a glass jar
-    fit: contain
+    alt: Cardamom
 variants:
   - pack: 100 g
     sku: GS-CAR-100G
