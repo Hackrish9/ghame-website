@@ -1,7 +1,7 @@
 # Ghame Spice website
 
 Static website with a management portal, WhatsApp ordering and a content verification register.
-Built with Eleventy 3 and Decap CMS 3, hosted free on Cloudflare Pages. No database, no monthly fee.
+Built with Eleventy 3 and Decap CMS 3, hosted on Cloudflare Workers with Static Assets. No database.
 
 Every change made in the portal is saved as a Git commit in this repository, so there is a full
 history of who changed what and when, and any change can be undone.
@@ -23,22 +23,23 @@ Staff instructions are in `docs/ADMIN-GUIDE.md`.
    files such as `.gitignore` and accepts only 100 files at a time.
 3. Do not upload `node_modules` or `_site` if they exist on your computer.
 
-### 2. Create the Cloudflare Pages project
-1. Cloudflare dashboard > **Workers & Pages** > **Create** > **Pages** > **Connect to Git**, then choose the repository.
-   (If the dashboard opens on Workers, pick the Pages option.)
-2. Build settings: Framework preset **None**, Build command `npm run build`, Build output directory `_site`.
-3. Environment variable: `NODE_VERSION` = `22`.
-4. Save and deploy. The site is live at `https://<project>.pages.dev` in about two minutes.
+### 2. Create the Cloudflare Workers project
+1. Cloudflare dashboard > **Workers & Pages** > **Create application** > **Import a repository**, then choose this repository.
+2. Worker name must be **`ghame-website`**.
+3. Build command: `npm run build`. Deploy command: `npx wrangler deploy`.
+4. The committed `wrangler.jsonc` deploys `_site` as Static Assets and routes `/api/*` through `worker/index.js`.
+5. Set `NODE_VERSION` = `22` as a build variable if needed.
+6. Save and deploy. The site is live at `https://ghame-website.<your-subdomain>.workers.dev`.
 
 ### 3. Create the GitHub sign-in app for the portal
 GitHub > Settings > Developer settings > **OAuth Apps** > New OAuth App:
-- Homepage URL: `https://<project>.pages.dev`
-- Authorization callback URL: `https://<project>.pages.dev/api/callback`
+- Homepage URL: `https://ghame-website.<your-subdomain>.workers.dev`
+- Authorization callback URL: `https://ghame-website.<your-subdomain>.workers.dev/api/callback`
 
 Copy the **Client ID**, then generate a **Client secret**.
 
 ### 4. Connect the portal
-Cloudflare > your Pages project > Settings > **Variables and Secrets** (Production):
+Cloudflare > your Worker > Settings > **Variables and Secrets** (runtime):
 
 | Name | Value |
 |---|---|
@@ -46,10 +47,10 @@ Cloudflare > your Pages project > Settings > **Variables and Secrets** (Producti
 | `GITHUB_CLIENT_SECRET` | from step 3 (mark as Secret) |
 | `CMS_REPO` | `Hackrish9/ghame-website` |
 | `CMS_BRANCH` | `main` |
-| `SITE_URL` | `https://<project>.pages.dev` now, `https://ghame.lk` after step 6 |
+| `SITE_URL` | `https://ghame-website.<your-subdomain>.workers.dev` now, `https://ghame.lk` after step 6 |
 | `NODE_VERSION` | `22` |
 
-Redeploy (Deployments > latest > Retry deployment). Open `/admin/` and sign in with GitHub.
+Redeploy the Worker. Open `/admin/` and sign in with GitHub. If `/api/auth` returns 404, confirm the deployment used the committed `wrangler.jsonc` and `worker/index.js`.
 
 ### 5. Give staff access
 GitHub repository > Settings > Collaborators > add each editor's GitHub account with **Write** access.
@@ -89,7 +90,8 @@ src/recipes/        one file per recipe
 src/pages/          information pages (privacy, terms, delivery and samples)
 src/admin/          config.yml (portal fields), index.njk (portal), stock and register reports
 src/assets/         css, js, img (logos, illustrations), uploads (photos, certificates)
-functions/api/      GitHub sign-in for the portal (Cloudflare Pages Functions)
+functions/api/      GitHub OAuth handlers (shared by the Worker router)
+worker/             Cloudflare Worker router for /api/* and static assets
 scripts/            content check run before every build
 ```
 
@@ -102,6 +104,7 @@ scripts/            content check run before every build
 | Symptom | Fix |
 |---|---|
 | Portal says "not connected yet" | Update to the latest site build. This repository now defaults to `Hackrish9/ghame-website`; if overridden, verify `CMS_REPO` and redeploy. |
+| `/api/auth` returns 404 | Worker API router was not deployed; use `npx wrangler deploy` with the committed `wrangler.jsonc` |
 | Sign-in popup shows a redirect error | OAuth App callback URL does not match the address the portal was opened on |
 | A change does not appear | Check the Cloudflare build log for the content check message |
 | Old CSS after an update | Hard refresh; files are versioned on every build |
