@@ -1,24 +1,6 @@
 {
-  "brand": "Ghame",
-  "company": "Ghame Spice (Pvt) Ltd",
-  "tagline": "Authentic Sri Lankan Spices. Crafted with Heritage. Inspired by Nature.",
-  "signature": "From Sri Lanka, with flavour.",
-  "url": "https://ghame.lk",
-  "logo": "/assets/img/ghame-logo-sm.png",
-  "logo_white": "/assets/img/ghame-logo-white-sm.png",
-  "og_image": "/assets/img/og-default.jpg",
-  "seo": {
-    "home_title": "Ghame Spice | Authentic Sri Lankan Spices, Curry Powders and HORECA Supply",
-    "description": "Authentic Sri Lankan spices and curry powders from Ghame Spice, made in an ISO 22000, HACCP and GMP certified factory in Hokandara. Order on WhatsApp, or buy HORECA and export packs."
-  },
-  "announcement": {
-    "enabled": false,
-    "text": "Island-wide delivery by courier. Order on WhatsApp.",
-    "link": "/shop/"
-  },
   "contact": {
-    "whatsapp": "94702030100",
-    "whatsapp_label": "070 20 30 100",
+    "open_time": "09:00",
     "phones": [
       {
         "label": "Phone",
@@ -29,9 +11,7 @@
         "number": "+94 76 618 1290"
       }
     ],
-    "email": "ghamespice@outlook.com",
-    "b2b_email": "",
-    "hours_text": "Monday to Saturday, 9.00 am to 5.00 pm",
+    "whatsapp_label": "070 20 30 100",
     "open_days": [
       "Mon",
       "Tue",
@@ -40,9 +20,27 @@
       "Fri",
       "Sat"
     ],
-    "open_time": "09:00",
+    "b2b_email": "",
+    "whatsapp": "94702030100",
     "close_time": "17:00",
-    "map_link": "https://www.google.com/maps/search/?api=1&query=365%2F2%2FB%201st%20Lane%2C%20Nandasara%20Mawatha%2C%20Hokandara%20North%2C%20Malabe%2C%20Sri%20Lanka"
+    "email": "ghamespice@outlook.com",
+    "hours_text": "Monday to Saturday, 9.00 am to 5.00 pm",
+    "map_link": "https://maps.app.goo.gl/AMaEoRDhDnAQgKbe6"
+  },
+  "store": {
+    "orders_open": true,
+    "closed_message": "Online ordering is paused. Message us on WhatsApp and we will help you directly.",
+    "low_stock_threshold": 5,
+    "show_stock_count": true,
+    "order_prefix": "GS",
+    "delivery_methods": [
+      "Courier within Sri Lanka",
+      "Post within Sri Lanka",
+      "Collect from our Hokandara factory",
+      "International shipping"
+    ],
+    "checkout_note": "Courier charges within Sri Lanka depend on your delivery location, and international shipping depends on the destination country. Ghame confirms stock, the delivery charge and the final total on WhatsApp before dispatch. Nothing is charged on this website.",
+    "price_on_request_label": "Price on request"
   },
   "addresses": [
     {
@@ -51,6 +49,13 @@
       "confirmed": true
     }
   ],
+  "announcement": {
+    "enabled": false,
+    "text": "Island-wide delivery by courier. Order on WhatsApp.",
+    "link": "/shop/"
+  },
+  "brand": "Ghame",
+  "logo": "/assets/img/ghame-logo-sm.png",
   "social": [
     {
       "network": "Facebook",
@@ -73,67 +78,62 @@
       "confirmed": true
     }
   ],
+  "tagline": "Authentic Sri Lankan Spices. Crafted with Heritage. Inspired by Nature.",
+  "url": "https://ghame.lk",
+  "og_image": "/assets/img/og-default.jpg",
+  "logo_white": "/assets/img/ghame-logo-white-sm.png",
+  "signature": "From Sri Lanka, with flavour.",
+  "registration": "PV 00292189",
   "certifications": [
     {
-      "name": "ISO 22000:2018",
-      "standard": "Food safety management system",
       "body": "Knowledge Mag Certifications Pvt Ltd, accredited by the Sri Lanka Accreditation Board",
-      "number": "KMC-LK-10300044-GSPL",
-      "scope": "Manufacturing, grinding, packing, storage and distribution of spices in bulk and packet form, and labelling of bee honey, jaggery and treacle.",
-      "issued": "2026-02-01",
-      "expiry": "2029-01-31",
       "next_surveillance": "2027-02-01",
-      "logo": "",
+      "verified": true,
       "preview": "/assets/uploads/certificates/ghame-kmc-iso-22000-certificate.jpg",
+      "verify_url": "https://www.kmcertification.com",
+      "number": "KMC-LK-10300044-GSPL",
+      "logo": "",
+      "name": "ISO 22000:2018",
+      "issued": "2026-02-01",
+      "expiry": "2029-01-31",
+      "scope": "Manufacturing, grinding, packing, storage and distribution of spices in bulk and packet form, and labelling of bee honey, jaggery and treacle.",
       "certificate": "/assets/uploads/certificates/ghame-kmc-iso-22000-certificate.pdf",
-      "verify_url": "https://www.kmcertification.com",
-      "verified": true
+      "standard": "Food safety management system"
     },
     {
-      "name": "HACCP",
-      "standard": "Hazard Analysis and Critical Control Point system, SLS 1266:2023",
       "body": "Knowledge Mag Certifications Pvt Ltd, accredited by the Sri Lanka Accreditation Board",
-      "number": "KMC-LK-10200045-GSPL",
-      "scope": "Manufacturing, grinding, packing, storage and distribution of spices in bulk and packet form, and labelling of bee honey, jaggery and treacle.",
-      "issued": "2026-02-01",
-      "expiry": "2029-01-31",
       "next_surveillance": "2027-02-01",
-      "logo": "",
+      "verified": true,
       "preview": "/assets/uploads/certificates/ghame-kmc-haccp-certificate.jpg",
-      "certificate": "/assets/uploads/certificates/ghame-kmc-haccp-certificate.pdf",
       "verify_url": "https://www.kmcertification.com",
-      "verified": true
-    },
-    {
-      "name": "GMP",
-      "standard": "Good Manufacturing Practice, Codex General Principles of Food Hygiene CXC 1-1969",
-      "body": "Knowledge Mag Certifications Pvt Ltd, accredited by the Sri Lanka Accreditation Board",
-      "number": "KMC-LK-20100046-GSPL",
-      "scope": "Manufacturing, grinding, packing, storage and distribution of spices in bulk and packet form, and labelling of bee honey, jaggery and treacle.",
+      "number": "KMC-LK-10200045-GSPL",
+      "logo": "",
+      "name": "HACCP",
       "issued": "2026-02-01",
       "expiry": "2029-01-31",
+      "scope": "Manufacturing, grinding, packing, storage and distribution of spices in bulk and packet form, and labelling of bee honey, jaggery and treacle.",
+      "certificate": "/assets/uploads/certificates/ghame-kmc-haccp-certificate.pdf",
+      "standard": "Hazard Analysis and Critical Control Point system, SLS 1266:2023"
+    },
+    {
+      "body": "Knowledge Mag Certifications Pvt Ltd, accredited by the Sri Lanka Accreditation Board",
       "next_surveillance": "2027-02-01",
-      "logo": "",
+      "verified": true,
       "preview": "/assets/uploads/certificates/ghame-kmc-gmp-certificate.jpg",
-      "certificate": "/assets/uploads/certificates/ghame-kmc-gmp-certificate.pdf",
       "verify_url": "https://www.kmcertification.com",
-      "verified": true
+      "number": "KMC-LK-20100046-GSPL",
+      "logo": "",
+      "name": "GMP",
+      "issued": "2026-02-01",
+      "expiry": "2029-01-31",
+      "scope": "Manufacturing, grinding, packing, storage and distribution of spices in bulk and packet form, and labelling of bee honey, jaggery and treacle.",
+      "certificate": "/assets/uploads/certificates/ghame-kmc-gmp-certificate.pdf",
+      "standard": "Good Manufacturing Practice, Codex General Principles of Food Hygiene CXC 1-1969"
     }
   ],
-  "store": {
-    "orders_open": true,
-    "closed_message": "Online ordering is paused. Message us on WhatsApp and we will help you directly.",
-    "low_stock_threshold": 5,
-    "show_stock_count": true,
-    "order_prefix": "GS",
-    "delivery_methods": [
-      "Courier within Sri Lanka",
-      "Post within Sri Lanka",
-      "Collect from our Hokandara factory",
-      "International shipping"
-    ],
-    "checkout_note": "Courier charges within Sri Lanka depend on your delivery location, and international shipping depends on the destination country. Ghame confirms stock, the delivery charge and the final total on WhatsApp before dispatch. Nothing is charged on this website.",
-    "price_on_request_label": "Price on request"
+  "seo": {
+    "home_title": "Ghame Spice | Authentic Sri Lankan Spices, Curry Powders and HORECA Supply",
+    "description": "Authentic Sri Lankan spices and curry powders from Ghame Spice, made in an ISO 22000, HACCP and GMP certified factory in Hokandara. Order on WhatsApp, or buy HORECA and export packs."
   },
-  "registration": "PV 00292189"
+  "company": "Ghame Spice (Pvt) Ltd"
 }
